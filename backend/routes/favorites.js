@@ -8,7 +8,6 @@ router.post('/:propertyId', auth, (req, res) => {
     const userId = req.user.id;
     const propertyId = req.params.propertyId;
 
-    // Check if already favorited
     const checkQuery = "SELECT * FROM favorites WHERE user_id = ? AND property_id = ?";
     db.query(checkQuery, [userId, propertyId], (err, results) => {
         if (err) return res.status(500).json({ message: 'Database error', error: err });

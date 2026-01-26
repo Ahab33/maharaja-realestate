@@ -1,76 +1,89 @@
-const API_URL = "http://localhost:5000/api/admin";
-const token = localStorage.getItem("token");
-
-// Redirect to login if not logged in
-if (!token) {
-  alert("Please login as admin first.");
-  window.location.href = "login.html";
-}
-
-// Fetch pending properties from backend
-async function fetchPendingProperties() {
-  try {
-    const res = await fetch(`${API_URL}/properties`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-
-    const data = await res.json();
-
-    const pendingList = document.getElementById("pending-list");
-    pendingList.innerHTML = "";
-
-    const pending = data.filter((p) => p.status === "pending");
-
-    if (pending.length === 0) {
-      pendingList.innerHTML = "<p>No pending properties right now.</p>";
-      return;
+document.addEventListener("DOMContentLoaded", () => {
+    const token = localStorage.getItem("token"); // Admin JWT
+    if (!token) {
+        alert("You must be logged in as admin");
+        window.location.href = "login.html";
+        return;
     }
 
-    pending.forEach((p) => {
-      const card = document.createElement("div");
-      card.classList.add("property-card");
-      card.innerHTML = `
-        <img src="${p.image_url}" alt="Property">
-        <div class="details">
-          <h4>${p.title}</h4>
-          <p>${p.location}</p>
-          <p><strong>PKR ${p.price.toLocaleString()}</strong></p>
-          <div class="actions">
-            <button class="approve-btn" data-id="${p.id}">Approve</button>
-            <button class="reject-btn" data-id="${p.id}">Reject</button>
-          </div>
-        </div>
-      `;
-      pendingList.appendChild(card);
+    const totalUsersEl = document.getElementById("total-users");
+    const totalListingsEl = document.getElementById("total-listings");
+    const pendingApprovalsEl = document.getElementById("pending-approvals");
+    const pendingListEl = document.getElementById("pending-list");
+    const logoutBtn = document.querySelector(".logout-btn");
+
+    logoutBtn.addEventListener("click", () => {
+        localStorage.removeItem("token");
+        window.location.href = "login.html";
     });
 
-    // Add click handlers
-    document.querySelectorAll(".approve-btn").forEach((btn) =>
-      btn.addEventListener("click", () => handleApproval(btn.dataset.id, "approve"))
-    );
-    document.querySelectorAll(".reject-btn").forEach((btn) =>
-      btn.addEventListener("click", () => handleApproval(btn.dataset.id, "reject"))
-    );
-  } catch (error) {
-    console.error("Error fetching pending properties:", error);
-  }
-}
+    // -------------------- GET STATS --------------------
+    fetch("http://localhost:5000/api/admin/stats", {
+        headers: { "Authorization": `Bearer ${token}` }
+    })
+    .then(res => {
+        if (!res.ok) throw new Error("Failed to fetch stats. Status: " + res.status);
+        return res.json();
+    })
+    .then(stats => {
+        totalUsersEl.textContent = stats.totalUsers || 0;
+        totalListingsEl.textContent = stats.totalProperties || 0;
+        pendingApprovalsEl.textContent = stats.pendingProperties || 0;
+    })
+    .catch(err => console.error("Error fetching stats:", err));
 
-// Handle Approve / Reject
-async function handleApproval(id, action) {
-  try {
-    const res = await fetch(`${API_URL}/properties/${id}/${action}`, {
-      method: "PUT",
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    // -------------------- GET PENDING PROPERTIES --------------------
+    fetch("http://localhost:5000/api/admin/properties", {
+        headers: { "Authorization": `Bearer ${token}` }
+    })
+    .then(res => {
+        if (!res.ok) throw new Error("Failed to fetch properties. Status: " + res.status);
+        return res.json();
+    })
+    .then(properties => {
+        // Ensure properties is an array
+        if (!Array.isArray(properties)) {
+            console.error("Expected array but got:", properties);
+            properties = [];
+        }
 
-    const data = await res.json();
-    alert(data.message);
-    fetchPendingProperties(); // Refresh after action
-  } catch (error) {
-    console.error("Error approving/rejecting property:", error);
-  }
-}
+        pendingListEl.innerHTML = "";
+        properties.filter(p => p.status === "pending").forEach(p => {
+            const div = document.createElement("div");
+            div.classList.add("pending-card");
+            div.innerHTML = `
+                <h3>${p.title}</h3>
+                <p>${p.location}${p.city ? ', ' + p.city : ''}${p.country ? ', ' + p.country : ''}</p>
+                <p>Price: ${p.price.toLocaleString()} PKR</p>
+                <button class="approve-btn" data-id="${p.id}">Approve</button>
+                <button class="reject-btn" data-id="${p.id}">Reject</button>
+            `;
+            pendingListEl.appendChild(div);
+        });
 
-// Run on load
-fetchPendingProperties();
+        // Approve / Reject functionality
+        document.querySelectorAll(".approve-btn").forEach(btn => {
+            btn.addEventListener("click", () => updateStatus(btn.dataset.id, "approve"));
+        });
+        document.querySelectorAll(".reject-btn").forEach(btn => {
+            btn.addEventListener("click", () => updateStatus(btn.dataset.id, "reject"));
+        });
+    })
+    .catch(err => console.error("Error fetching pending properties:", err));
+
+    function updateStatus(id, action) {
+        fetch(`http://localhost:5000/api/admin/properties/${id}/${action}`, {
+            method: "PUT",
+            headers: { "Authorization": `Bearer ${token}` }
+        })
+        .then(res => {
+            if (!res.ok) throw new Error(`Failed to ${action} property. Status: ` + res.status);
+            return res.json();
+        })
+        .then(data => {
+            alert(data.message);
+            location.reload(); // reload dashboard to update stats
+        })
+        .catch(err => console.error(`Error ${action} property:`, err));
+    }
+});

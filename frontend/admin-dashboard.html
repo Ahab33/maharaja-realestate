@@ -14,7 +14,7 @@
     <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sidebar-header">
-        <img src="img/maharaja.png" alt="Logo" class="logo" />
+        <a href="index.html"><img src="img/maharaja.png" alt="Logo" class="logo" /></a>
         <h2>Maharaja Admin</h2>
       </div>
 
@@ -30,29 +30,34 @@
 
     <!-- Main Content -->
     <main class="dashboard">
-      <section class="overview">
-        <h2>Platform Overview & Statistics</h2>
-        <div class="stats-grid">
-          <div class="card"><i class="fas fa-users"></i><h3>Total Users</h3><p>1,250</p></div>
-          <div class="card"><i class="fas fa-building"></i><h3>Total Listings</h3><p>320</p></div>
-          <div class="card"><i class="fas fa-clock"></i><h3>Pending Approvals</h3><p>12</p></div>
-          <div class="card"><i class="fas fa-rupee-sign"></i><h3>Revenue</h3><p>₹8.2M</p></div>
-        </div>
-      </section>
+     <section class="overview">
+  <h2>Platform Overview & Statistics</h2>
+  <div class="stats-grid">
+    <div class="card">
+      <i class="fas fa-users"></i>
+      <h3>Total Users</h3>
+      <p id="total-users">0</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-building"></i>
+      <h3>Total Listings</h3>
+      <p id="total-listings">0</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-clock"></i>
+      <h3>Pending Approvals</h3>
+      <p id="pending-approvals">0</p>
+    </div>
+    <!-- Revenue card removed -->
+  </div>
+</section>
 
       <section class="pending">
         <h2>Pending Approvals</h2>
         <div class="pending-grid" id="pending-list"></div>
       </section>
 
-      <section class="activity">
-        <h2>Recent Activity</h2>
-        <ul class="activity-list">
-          <li><i class="fas fa-user-plus"></i> New user registered: Ali Khan</li>
-          <li><i class="fas fa-home"></i> Property listed: 5 Marla House in Bahria Town</li>
-          <li><i class="fas fa-check-circle"></i> Admin approved property: Luxury Villa F-7</li>
-        </ul>
-      </section>
+      
     </main>
   </div>
 
