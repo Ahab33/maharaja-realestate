@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maharaja Builders & Realtors</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2d9d6f6a7.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="nav-left">
+      
+      <div class="brand">
+        <img src="img/maharaja.png" alt="Logo" class="logo" />
+      </div>
+    </div>
+  <nav class="nav-center">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="buy.html"><i class="fas fa-home"></i> Buy</a>
+      <a href="rent.html"><i class="fas fa-home"></i> Rent</a>
+      <a href="sale.html"><i class="fas fa-home"></i> Sale</a>
+      <a href="properties.html"><i class="fas fa-building"></i> Properties</a>
+      <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+      <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+    </nav>
+     <!-- Placeholder for user nav -->
+  <div id="user-nav" class="user-nav">
+  <a href="login.html">Login</a>
+  <a href="signup.html" class="signup-btn">Sign Up</a>
+</div>
+  </header>
+
+  <!-- Properties Page Hero Section -->
+<section class="properties-hero">
+  <div class="properties-hero-container">
+    <h1>Luxury Properties</h1>
+    <p>Explore our collection of premium real estate.</p>
+  </div>
+</section>
+
+<!-- Properties Filter and Listings Section -->
+<section class="properties-section">
+  <div class="properties-container">
+
+    <!-- Filter Sidebar -->
+    <aside class="filter-sidebar">
+      <button class="reset-btn">Reset Filters</button>
+
+      <!-- Property Type -->
+      <div class="filter-group">
+        <label for="property-type">Property Type</label>
+        <select id="property-type">
+          <option value="">Select Type</option>
+          <option value="house">House</option>
+          <option value="apartment">Apartment</option>
+          <option value="villa">Villa</option>
+        </select>
+      </div>
+
+      <!-- Listing Type -->
+      <div class="filter-group">
+        <label>Listing Type</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" value="sale" class="listing-type" /> For Sale</label>
+          <label><input type="checkbox" value="rent" class="listing-type" /> For Rent</label>
+        </div>
+      </div>
+
+      
+     <!-- Price Range -->
+<div class="filter-group">
+  <label>Price Range (₹)</label>
+  <div class="price-range">
+    <input type="range" min="0" max="100000000" step="100000" id="min-price" value="0">
+    <input type="range" min="0" max="100000000" step="100000" id="max-price" value="100000000">
+    <div class="price-tooltip" id="min-price-tooltip">₹0</div>
+    <div class="price-tooltip" id="max-price-tooltip">₹10 Cr+</div>
+  </div>
+</div>
+
+
+
+      <!-- Bedrooms -->
+      <div class="filter-group">
+        <label>Bedrooms</label>
+        <div class="bedroom-buttons">
+          <button data-bed="1">1</button>
+          <button data-bed="2">2</button>
+          <button data-bed="3">3</button>
+          <button data-bed="4">4+</button>
+        </div>
+      </div>
+
+      <!-- Amenities -->
+      <div class="filter-group">
+        <label>Amenities</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" value="swimming_pool" class="amenity" /> Swimming Pool</label>
+          <label><input type="checkbox" value="gym" class="amenity" /> Gym</label>
+          <label><input type="checkbox" value="parking" class="amenity" /> Parking</label>
+          <label><input type="checkbox" value="security" class="amenity" /> Security</label>
+          <label><input type="checkbox" value="garden" class="amenity" /> Garden</label>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Property Cards (Right side) -->
+    <!-- Property Cards (Right side) -->
+<div class="properties-right">
+
+  <!-- Top bar: number of properties + sort -->
+  <div class="properties-top">
+    <p id="properties-count">0 Properties Found</p>
+    <select id="sort-properties">
+      <option value="newest">Newest First</option>
+      <option value="price-low">Price: Low to High</option>
+      <option value="price-high">Price: High to Low</option>
+      <option value="popular">Most Popular</option>
+    </select>
+  </div>
+
+  <!-- Properties Grid -->
+  <div id="properties-list" class="properties-grid">
+    <!-- Property cards will be injected here dynamically -->
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination" id="pagination"></div>
+
+</div>
+
+
+  </div>
+</section>
+
+
+<!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-container">
+    
+    <!-- Column 1: Logo & Social -->
+    <div class="footer-col">
+      <img src="img/maharaja_wht.avif" alt="Maharaja Builders Logo" class="footer-logo" />
+      <p>Your trusted partner in finding the perfect property. Excellence in real estate since 1999.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+    <!-- Column 2: Quick Links -->
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Properties</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 3: Resources -->
+    <div class="footer-col">
+      <h3>Resources</h3>
+      <ul>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 4: Contact Us -->
+    <div class="footer-col">
+      <h3>Contact Us</h3>
+      <p>Plot 123, Street 5, F-7 Markaz<br>Islamabad, Pakistan 44000</p>
+      <p>+92 51 2345678<br>contact@maharajabuilders.pk</p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 Maharaja Builders & Realtors. All rights reserved.</p>
+  </div>
+</footer>
+
+
+
+<script src="properties.js"></script>
+<script src="nav.js"></script>
+</body>

@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maharaja Builders & Realtors</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #0d2e1e;
+    }
+
+    /* ---------- NAVBAR ---------- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      padding: 10px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      height: 45px;
+    }
+
+    .nav-center {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-center a {
+      text-decoration: none;
+      color: #0d2e1e;
+      font-weight: 500;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+
+    .nav-center a:hover {
+      color: #13452a;
+    }
+
+    .user-nav a {
+      text-decoration: none;
+      color: #0d2e1e;
+      font-weight: 500;
+      margin-left: 15px;
+      transition: 0.3s;
+    }
+
+    .user-nav .signup-btn {
+      background: #0d2e1e;
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 6px;
+    }
+
+    .user-nav .signup-btn:hover {
+      background: #13452a;
+    }
+
+    /* ---------- HERO SECTION ---------- */
+    header.hero {
+      background: url('https://associateddesigns.com/product_images/blog_images/priarie_style_house_plan_hood_river_30-947_front_0.jpg') center/cover no-repeat;
+      height: 60vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    header.hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    header.hero .content {
+      position: relative;
+      z-index: 2;
+    }
+
+    header.hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .tabs button {
+      padding: 10px 25px;
+      border: 2px solid white;
+      background: transparent;
+      color: white;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .tabs button.active,
+    .tabs button:hover {
+      background: #0d2e1e;
+      border-color: #0d2e1e;
+    }
+
+    .search-box {
+      position: relative;
+      background: white;
+      border-radius: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      max-width: 800px;
+      margin: 0 auto;
+      z-index: 2;
+    }
+
+    .search-box select, .search-box button {
+      padding: 10px 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    .search-box button {
+      background: #0d2e1e;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .search-box button:hover {
+      background: #13452a;
+    }
+
+    /* ---------- PROPERTY CARDS ---------- */
+    section {
+      padding: 50px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #0d2e1e;
+    }
+
+    .properties {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 15px;
+    }
+
+    .card-content h3 {
+      font-size: 1.1rem;
+      color: #0d2e1e;
+      margin-bottom: 8px;
+    }
+
+    .card-content p {
+      font-size: 0.9rem;
+      color: #555;
+      margin: 0 0 8px;
+    }
+
+    .price {
+      color: #0d2e1e;
+      font-weight: 600;
+    }
+
+    /* ---------- POPULAR LOCATIONS ---------- */
+    .popular-locations {
+      margin-top: 60px;
+    }
+
+    .popular-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+
+    .popular-tabs button {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 10px;
+      transition: 0.3s;
+      color: #0d2e1e;
+    }
+
+    .popular-tabs button.active {
+      border-color: #0d2e1e;
+      font-weight: 600;
+    }
+
+    .popular-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .popular-box {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      padding: 20px;
+    }
+
+    .popular-box h3 {
+      color: #0d2e1e;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .popular-box ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .popular-box ul li {
+      margin: 6px 0;
+    }
+
+    .popular-box ul li a {
+      text-decoration: none;
+      color: #0d2e1e;
+      font-size: 0.9rem;
+      transition: 0.3s;
+    }
+
+    .popular-box ul li a:hover {
+      color: #13452a;
+    }
+
+    .footer {
+  background-color: #1f1f1f;
+  color: white;
+  padding: 60px 20px 30px;
+  font-size: 0.95rem;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 40px;
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 220px;
+}
+
+.footer-logo {
+  width: 150px;
+  margin-bottom: 15px;
+}
+
+.footer-col h3 {
+  color: #f4b400; /* yellow headings */
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.footer-col p {
+  color: #ddd;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+  color: #ddd;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-col ul li a:hover {
+  color: #f4b400;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.social-icons a {
+  color: white;
+  font-size: 1.1rem;
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  color: #f4b400;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  border-top: 1px solid #222;
+  padding-top: 20px;
+  color: #777;
+  font-size: 0.85rem;
+}
+
+   
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="nav-left">
+      <div class="brand">
+        <img src="img/maharaja.png" alt="Logo" class="logo" />
+      </div>
+    </div>
+    <nav class="nav-center">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="buy.html"><i class="fas fa-home"></i> Buy</a>
+      <a href="rent.html"><i class="fas fa-home"></i> Rent</a>
+      <a href="sale.html"><i class="fas fa-home"></i> Sale</a>
+      <a href="properties.html"><i class="fas fa-building"></i> Properties</a>
+      <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+      <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+    </nav>
+    <div id="user-nav" class="user-nav">
+      <a href="login.html">Login</a>
+      <a href="signup.html" class="signup-btn">Sign Up</a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <header class="hero">
+    <div class="content">
+      <h1>Discover Properties in Pakistan & UAE</h1>
+
+      <div class="tabs">
+        <button class="active">BUY</button>
+        <button>RENT</button>
+        <button>PROJECTS</button>
+      </div>
+
+      <div class="search-box">
+        <select id="country">
+          <option value="">Select Country</option>
+          <option value="pakistan">Pakistan</option>
+          <option value="uae">UAE</option>
+        </select>
+
+        <select id="city">
+          <option value="">Select City</option>
+        </select>
+
+        <button id="search">Find</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- PROPERTIES -->
+  <section>
+    <h2 class="section-title">Browse Properties</h2>
+    <div class="properties" id="property-grid"></div>
+
+    <!-- POPULAR LOCATIONS -->
+    <div class="popular-locations">
+      <h2 class="section-title">Popular Locations</h2>
+
+      <div class="popular-tabs">
+        <button class="active">For Sale</button>
+        <button>To Rent</button>
+      </div>
+
+      <div class="popular-grid">
+        <div class="popular-box">
+          <h3>Lahore</h3>
+          <ul>
+            <li><a href="#">DHA Defence</a></li>
+            <li><a href="#">Bahria Town</a></li>
+            <li><a href="#">Gulberg</a></li>
+            <li><a href="#">Askari</a></li>
+          </ul>
+        </div>
+
+        <div class="popular-box">
+          <h3>Karachi</h3>
+          <ul>
+            <li><a href="#">Clifton</a></li>
+            <li><a href="#">Scheme 33</a></li>
+            <li><a href="#">DHA Defence</a></li>
+            <li><a href="#">Gulshan-e-Iqbal</a></li>
+          </ul>
+        </div>
+
+        <div class="popular-box">
+          <h3>Islamabad</h3>
+          <ul>
+            <li><a href="#">Bahria Town</a></li>
+            <li><a href="#">G-11</a></li>
+            <li><a href="#">E-11</a></li>
+            <li><a href="#">Faisal Hills</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-container">
+    
+    <!-- Column 1: Logo & Social -->
+    <div class="footer-col">
+      <img src="img/maharaja_wht.avif" alt="Maharaja Builders Logo" class="footer-logo" />
+      <p>Your trusted partner in finding the perfect property. Excellence in real estate since 1999.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+    <!-- Column 2: Quick Links -->
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Properties</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 3: Resources -->
+    <div class="footer-col">
+      <h3>Resources</h3>
+      <ul>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 4: Contact Us -->
+    <div class="footer-col">
+      <h3>Contact Us</h3>
+      <p>Plot 123, Street 5, F-7 Markaz<br>Islamabad, Pakistan 44000</p>
+      <p>+92 51 2345678<br>contact@maharajabuilders.pk</p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 Maharaja Builders & Realtors. All rights reserved.</p>
+  </div>
+</footer>
+
+  <script>
+    const countrySelect = document.getElementById("country");
+    const citySelect = document.getElementById("city");
+    const propertyGrid = document.getElementById("property-grid");
+    const searchBtn = document.getElementById("search");
+
+    const cityOptions = {
+      pakistan: ["Islamabad", "Lahore", "Karachi"],
+      uae: ["Dubai", "Ras Al Khaimah"]
+    };
+
+    const propertyData = {
+      pakistan: {
+        islamabad: [
+          { title: "Luxury Apartment", location: "Islamabad", price: "PKR 25,000,000", img: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg" },
+          { title: "Modern Villa", location: "Islamabad", price: "PKR 45,000,000", img: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg" }
+        ],
+        lahore: [
+          { title: "Elegant House", location: "Lahore", price: "PKR 30,000,000", img: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg" },
+          { title: "Stylish Apartment", location: "Lahore", price: "PKR 20,000,000", img: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg" }
+        ],
+        karachi: [
+          { title: "Seaview Apartment", location: "Karachi", price: "PKR 40,000,000", img: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg" },
+          { title: "Downtown Flat", location: "Karachi", price: "PKR 22,000,000", img: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg" }
+        ]
+      },
+      uae: {
+        dubai: [
+          { title: "Luxury Penthouse", location: "Dubai", price: "AED 2,500,000", img: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg" },
+          { title: "Downtown Apartment", location: "Dubai", price: "AED 1,800,000", img: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg" }
+        ],
+        "ras al khaimah": [
+          { title: "Beach Villa", location: "Ras Al Khaimah", price: "AED 1,200,000", img: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg" },
+          { title: "Seaside Apartment", location: "Ras Al Khaimah", price: "AED 900,000", img: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg" }
+        ]
+      }
+    };
+
+    countrySelect.addEventListener("change", () => {
+      const country = countrySelect.value;
+      citySelect.innerHTML = '<option value="">Select City</option>';
+      if (cityOptions[country]) {
+        cityOptions[country].forEach(city => {
+          const opt = document.createElement("option");
+          opt.value = city.toLowerCase();
+          opt.textContent = city;
+          citySelect.appendChild(opt);
+        });
+      }
+    });
+
+    searchBtn.addEventListener("click", () => {
+      const country = countrySelect.value || "pakistan";
+      const city = citySelect.value;
+      propertyGrid.innerHTML = "";
+
+      let properties = [];
+
+      if (city && propertyData[country]?.[city]) {
+        properties = propertyData[country][city];
+      } else if (country === "pakistan") {
+        properties = [
+          ...propertyData.pakistan.islamabad,
+          ...propertyData.pakistan.lahore,
+          ...propertyData.pakistan.karachi
+        ];
+      } else if (country === "uae") {
+        properties = [
+          ...propertyData.uae.dubai,
+          ...propertyData.uae["ras al khaimah"]
+        ];
+      }
+
+      if (properties.length > 0) {
+        properties.forEach(p => {
+          const card = document.createElement("div");
+          card.classList.add("card");
+          card.innerHTML = `
+            <img src="${p.img}" alt="${p.title}">
+            <div class="card-content">
+              <h3>${p.title}</h3>
+              <p>${p.location}</p>
+              <p class="price">${p.price}</p>
+            </div>
+          `;
+          propertyGrid.appendChild(card);
+        });
+      } else {
+        propertyGrid.innerHTML = "<p style='text-align:center; color:#777;'>No properties found.</p>";
+      }
+    });
+
+    // Default to Pakistan properties
+    searchBtn.click();
+  </script>
+</body>
+</html>

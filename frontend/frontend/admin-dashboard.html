@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | Maharaja Builders</title>
+  <link rel="stylesheet" href="admin-dashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2d9d6f6a7.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="admin-container">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="index.html"><img src="img/maharaja.png" alt="Logo" class="logo" /></a>
+        <h2>Maharaja Admin</h2>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="admin-listings.html"><i class="fas fa-building"></i> Listings</a>
+        <a href="admin-users.html"><i class="fas fa-users"></i> Users</a>
+        <a href="#"><i class="fas fa-cog"></i> Settings</a>
+      </nav>
+
+      <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard">
+     <section class="overview">
+  <h2>Platform Overview & Statistics</h2>
+  <div class="stats-grid">
+    <div class="card">
+      <i class="fas fa-users"></i>
+      <h3>Total Users</h3>
+      <p id="total-users">0</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-building"></i>
+      <h3>Total Listings</h3>
+      <p id="total-listings">0</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-clock"></i>
+      <h3>Pending Approvals</h3>
+      <p id="pending-approvals">0</p>
+    </div>
+    <!-- Revenue card removed -->
+  </div>
+</section>
+
+      <section class="pending">
+        <h2>Pending Approvals</h2>
+        <div class="pending-grid" id="pending-list"></div>
+      </section>
+
+      
+    </main>
+  </div>
+
+  <script src="admin-dashboard.js"></script>
+</body>
+</html>

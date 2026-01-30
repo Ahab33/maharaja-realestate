@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Dashboard - Maharaja Builders</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <a href="index.html"><img src="img/maharaja.png" alt="Logo" /></a>
+      </div>
+      <nav>
+        <a href="#" class="active">Dashboard</a>
+        <a href="my-listings.html">My Listings</a>
+        <a href="favourties.html">Favorites</a>
+        <a href="messages.html">Messages</a>
+        <a href="add-property.html">Add Property</a>
+        <a href="#">Settings</a>
+      </nav>
+    </aside>
+
+
+ 
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="dashboard-header">
+        <h1>Dashboard</h1>
+        <div class="user-info">
+          <p>Welcome, <span id="username"></span></p>
+          <button id="logout-btn">Logout</button>
+        </div>
+      </header>
+
+      <!-- Stats Section -->
+      <section class="stats">
+        <div class="stat-card">
+          <h3>Total Listings</h3>
+          <p id="total-listings">0</p>
+        </div>
+        <div class="stat-card">
+          <h3>Favorites</h3>
+          <p id="total-favorites">0</p>
+        </div>
+        <div class="stat-card">
+          <h3>Messages</h3>
+          <p id="total-messages">0</p>
+        </div>
+      </section>
+
+      <!-- Recent Activity -->
+      <section class="recent-activity">
+        <h2>Recent Activity</h2>
+        <ul id="activity-list">
+          <li>New inquiry for Luxury Villa (2 hours ago)</li>
+          <li>Property listing approved (5 hours ago)</li>
+          <li>New favorite added (1 day ago)</li>
+          <li>Profile updated (2 days ago)</li>
+        </ul>
+      </section>
+
+
+      <!-- My Listings Section -->
+<section class="my-listings">
+  <h2>My Listings</h2>
+  <p class="subtitle">Your most recent property listings</p>
+
+  <div class="listing-grid" id="my-listings-grid">
+    <!-- Property Card 1 -->
+    <div class="property-card">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Property Image">
+      <h3>Luxury Villa in F-7</h3>
+      <p class="location"><i class="fas fa-map-marker-alt"></i> F-7 Markaz, Islamabad</p>
+      <p class="price">PKR 125,000,000</p>
+      <div class="details">
+        <span>6 Beds</span>
+        <span>5 Baths</span>
+        <span>5,500 sqft</span>
+      </div>
+      <button class="view-btn">View Details</button>
+    </div>
+
+    <!-- Property Card 2 -->
+    <div class="property-card">
+      <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=800&q=80" alt="Property Image">
+      <h3>Modern Penthouse</h3>
+      <p class="location"><i class="fas fa-map-marker-alt"></i> DHA Phase 2, Islamabad</p>
+      <p class="price">PKR 95,000,000</p>
+      <div class="details">
+        <span>4 Beds</span>
+        <span>3 Baths</span>
+        <span>3,800 sqft</span>
+      </div>
+      <button class="view-btn">View Details</button>
+    </div>
+
+    <!-- Property Card 3 -->
+    <div class="property-card">
+      <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=800&q=80" alt="Property Image">
+      <h3>Contemporary Estate</h3>
+      <p class="location"><i class="fas fa-map-marker-alt"></i> Bahria Town, Islamabad</p>
+      <p class="price">PKR 85,000,000</p>
+      <div class="details">
+        <span>5 Beds</span>
+        <span>4 Baths</span>
+        <span>4,200 sqft</span>
+      </div>
+      <button class="view-btn">View Details</button>
+    </div>
+  </div>
+</section>
+
+    </main>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

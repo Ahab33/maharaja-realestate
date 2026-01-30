@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Property - Maharaja Builders</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css" />
+  <script src="https://kit.fontawesome.com/a2d9d6f6a7.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="img/maharaja.png" alt="Logo" />
+      </div>
+      <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="my-listings.html">My Listings</a>
+        <a href="favourites.html">Favourites</a>
+        <a href="messages.html">Messages</a>
+        <a href="add-property.html" class="active">Add Property</a>
+        <a href="#">Settings</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="dashboard-header">
+        <h1>Add New Property</h1>
+      </header>
+
+      <section class="add-property-section">
+        <form id="addPropertyForm" enctype="multipart/form-data">
+          <!-- Property Info -->
+          <div class="form-group">
+            <label>Property Title</label>
+            <input type="text" id="title" placeholder="Luxury Villa in F-7" required>
+          </div>
+
+          <div class="form-group">
+            <label>Country</label>
+            <select id="country" required>
+              <option value="">Select Country</option>
+              <option value="Pakistan">Pakistan</option>
+              <option value="UAE">UAE</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>City</label>
+            <select id="city" required>
+              <option value="">Select City</option>
+              <option value="Karachi">Karachi</option>
+              <option value="Lahore">Lahore</option>
+              <option value="Islamabad">Islamabad</option>
+              <option value="Dubai">Dubai</option>
+              <option value="Ras Al Khaimah">Ras Al Khaimah</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Location</label>
+            <input type="text" id="location" placeholder="F-7 Markaz, Islamabad" required>
+          </div>
+
+          <div class="form-group">
+            <label>Price (PKR)</label>
+            <input type="number" id="price" placeholder="125000000" required>
+          </div>
+
+          <div class="form-group">
+            <label>Property Type</label>
+            <select id="type" required>
+              <option value="">Select Type</option>
+              <option value="house">House</option>
+              <option value="apartment">Apartment</option>
+              <option value="villa">Villa</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Listing Type</label>
+            <select id="listing" required>
+              <option value="">Select Listing</option>
+              <option value="sale">For Sale</option>
+              <option value="rent">For Rent</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Bedrooms</label>
+            <input type="number" id="beds" placeholder="5">
+          </div>
+
+          <div class="form-group">
+            <label>Bathrooms</label>
+            <input type="number" id="baths" placeholder="4">
+          </div>
+
+          <div class="form-group">
+            <label>Size (sqft)</label>
+            <input type="number" id="size" placeholder="5500">
+          </div>
+
+          <div class="form-group">
+            <label>Amenities</label>
+            <div class="checkbox-group">
+              <label><input type="checkbox" value="swimming_pool"> Swimming Pool</label>
+              <label><input type="checkbox" value="gym"> Gym</label>
+              <label><input type="checkbox" value="parking"> Parking</label>
+              <label><input type="checkbox" value="security"> Security</label>
+              <label><input type="checkbox" value="garden"> Garden</label>
+            </div>
+          </div>
+
+          <!-- File Uploads -->
+          <div class="form-group">
+            <label>Main Image</label>
+            <input type="file" id="mainImage" accept="image/*" required>
+          </div>
+
+          <div class="form-group">
+            <label>Gallery Images (up to 5)</label>
+            <input type="file" id="galleryImages" accept="image/*" multiple>
+          </div>
+
+          <button type="submit" class="submit-btn">Submit for Approval</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script src="add-property.js"></script>
+</body>
+</html>
