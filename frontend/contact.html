@@ -3,147 +3,715 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maharaja Builders & Realtors</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a2d9d6f6a7.js" crossorigin="anonymous"></script>
+  <title>Contact - Maharaja Builders & Realtors</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary-green: #0d2e1e;
+      --secondary-green: #13452a;
+      --light-green: #e8f5ee;
+      --accent-gold: #d4af37;
+      --pure-white: #ffffff;
+      --light-gray: #f5f5f5;
+      --text-dark: #0d2e1e;
+      --text-light: #666;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--pure-white);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* ---------- NAVBAR ---------- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--pure-white);
+      box-shadow: 0 4px 12px rgba(13, 46, 30, 0.08);
+      padding: 15px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    /* Fix navbar alignment after adding Become a Seller button */
+    .navbar {
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .nav-left {
+      position: absolute;
+      left: 40px;
+    }
+
+    .user-nav {
+      position: absolute;
+      right: 40px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .nav-center {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-center a {
+      text-decoration: none;
+      color: var(--primary-green);
+      font-weight: 500;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 5px 0;
+    }
+
+    .nav-center a:hover {
+      color: var(--secondary-green);
+    }
+
+    .nav-center a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--primary-green);
+      transition: width 0.3s ease;
+    }
+
+    .nav-center a:hover::after {
+      width: 100%;
+    }
+
+    .user-nav a {
+      text-decoration: none;
+      color: var(--primary-green);
+      font-weight: 500;
+      margin-left: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .user-nav .signup-btn {
+      background: var(--primary-green);
+      color: var(--pure-white);
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    .user-nav .signup-btn:hover {
+      background: var(--secondary-green);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(13, 46, 30, 0.2);
+    }
+
+    /* ---------- CONTACT HERO ---------- */
+    .contact-hero {
+      background: linear-gradient(rgba(13, 46, 30, 0.9), rgba(13, 46, 30, 0.8)), 
+                  url('https://images.unsplash.com/photo-1558036117-15e82a2c9a9a?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      padding: 100px 20px;
+      text-align: center;
+      color: var(--pure-white);
+    }
+
+    .contact-hero-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .contact-hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .contact-hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ---------- CONTACT SECTION ---------- */
+    .contact-section {
+      padding: 80px 20px;
+      background: var(--pure-white);
+    }
+
+    .contact-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    /* Contact Info Cards */
+    .contact-info {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .info-card {
+      background: var(--light-green);
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border-left: 4px solid var(--accent-gold);
+    }
+
+    .info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(13, 46, 30, 0.1);
+    }
+
+    .info-card i {
+      font-size: 2.5rem;
+      color: var(--primary-green);
+      margin-bottom: 20px;
+    }
+
+    .info-card h3 {
+      color: var(--primary-green);
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+    }
+
+    .info-card p {
+      color: var(--text-light);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Contact Form */
+    .contact-form {
+      background: var(--pure-white);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(13, 46, 30, 0.1);
+    }
+
+    .contact-form h2 {
+      color: var(--primary-green);
+      margin-bottom: 30px;
+      font-size: 2rem;
+      position: relative;
+    }
+
+    .contact-form h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--accent-gold);
+    }
+
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--primary-green);
+      box-shadow: 0 0 0 3px rgba(13, 46, 30, 0.1);
+    }
+
+    .contact-form button {
+      background: var(--primary-green);
+      color: var(--pure-white);
+      border: none;
+      padding: 15px 30px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .contact-form button:hover {
+      background: var(--secondary-green);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(13, 46, 30, 0.2);
+    }
+
+    /* ---------- FOOTER ---------- */
+    .footer {
+      background: var(--primary-green);
+      color: var(--pure-white);
+      padding: 60px 20px 30px;
+      font-size: 0.95rem;
+      position: relative;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--accent-gold);
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 40px;
+    }
+
+    .footer-col {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .footer-logo {
+      width: 160px;
+      margin-bottom: 20px;
+      filter: brightness(0) invert(1);
+    }
+
+    .footer-col h3 {
+      color: var(--accent-gold);
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--accent-gold);
+    }
+
+    .footer-col p {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer-col ul li a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--accent-gold);
+      padding-left: 5px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--pure-white);
+      border-radius: 50%;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background: var(--accent-gold);
+      color: var(--primary-green);
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 50px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 20px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.85rem;
+    }
+
+    /* ---------- RESPONSIVE DESIGN ---------- */
+    @media (max-width: 992px) {
+      .contact-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      
+      .contact-form {
+        padding: 30px;
+      }
+      
+      .navbar {
+        padding: 15px 20px;
+      }
+      
+      .nav-left {
+        left: 20px;
+      }
+      
+      .user-nav {
+        right: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .contact-hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .contact-hero p {
+        font-size: 1rem;
+      }
+      
+      .contact-form h2 {
+        font-size: 1.8rem;
+      }
+      
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      
+      .nav-center {
+        display: none;
+      }
+      
+      .navbar {
+        justify-content: space-between;
+      }
+      
+      .nav-left,
+      .user-nav {
+        position: static;
+      }
+      
+      .user-nav a:not(.signup-btn) {
+        display: none;
+      }
+      
+      .footer-container {
+        flex-direction: column;
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contact-hero {
+        padding: 60px 20px;
+      }
+      
+      .contact-hero h1 {
+        font-size: 2rem;
+      }
+      
+      .contact-section {
+        padding: 40px 20px;
+      }
+      
+      .contact-form {
+        padding: 20px;
+      }
+      
+      .info-card {
+        padding: 20px;
+      }
+      
+      .navbar {
+        padding: 10px;
+        flex-wrap: wrap;
+      }
+      
+      .user-nav .signup-btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- Navbar -->
+  <!-- NAVBAR -->
   <header class="navbar">
     <div class="nav-left">
-      
       <div class="brand">
         <img src="img/maharaja.png" alt="Logo" class="logo" />
       </div>
     </div>
-   <nav class="nav-center">
+
+    <nav class="nav-center">
       <a href="index.html"><i class="fas fa-home"></i> Home</a>
-      <a href="buy.html"><i class="fas fa-home"></i> Buy</a>
-      <a href="rent.html"><i class="fas fa-home"></i> Rent</a>
-      <a href="sale.html"><i class="fas fa-home"></i> Sale</a>
-      <a href="properties.html"><i class="fas fa-building"></i> Properties</a>
+      <a href="buy.html"><i class="fas fa-search"></i> Buy</a>
+      <a href="sale.html"><i class="fas fa-tag"></i> Sell</a>
+      <a href="rent.html"><i class="fas fa-key"></i> Rent</a>
+      <a href="properties.html"><i class="fas fa-building"></i> Other Properties</a>
       <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
-      <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+      <a href="contact.html" class="active"><i class="fas fa-phone"></i> Contact</a>
     </nav>
-    <!-- Placeholder for user nav -->
-  <div id="user-nav" class="user-nav">
-  <a href="login.html">Login</a>
-  <a href="signup.html" class="signup-btn">Sign Up</a>
-</div>
+
+    <div id="user-nav" class="user-nav">
+      <a href="login.html">Login</a>
+      <a href="signup.html" class="signup-btn">Sign Up</a>
+      <a href="dashboard.html" class="signup-btn" style="margin-left: 10px; background: var(--accent-gold); color: var(--primary-green);">
+        <i class="fas fa-user-tie"></i> Become a Seller
+      </a>
+    </div>
   </header>
 
   <!-- Contact Page Hero Section -->
-<section class="contact-hero">
-  <div class="contact-hero-container">
-    <h1>Get in Touch</h1>
-    <p>We’d love to hear from you. Let’s start a conversation today.</p>
-  </div>
-</section>
-
-
-<!-- Contact Section -->
-<section class="contact-section">
-  <div class="contact-container">
-
-    <!-- Left Side: Contact Info -->
-    <div class="contact-info">
-      <div class="info-card">
-        <i class="fas fa-phone-alt"></i>
-        <h3>Phone</h3>
-        <p>+91 98765 43210<br>+91 98765 43211</p>
-      </div>
-
-      <div class="info-card">
-        <i class="fas fa-envelope"></i>
-        <h3>Email</h3>
-        <p>info@maharajabuilders.com<br>support@maharajabuilders.com</p>
-      </div>
-
-      <div class="info-card">
-        <i class="fas fa-map-marker-alt"></i>
-        <h3>Office</h3>
-        <p>123 Luxury Avenue,<br>Premium District,<br>Mumbai 400001, India</p>
-      </div>
-
-      <div class="info-card">
-        <i class="fas fa-clock"></i>
-        <h3>Working Hours</h3>
-        <p>Monday - Friday: 9:00 AM - 7:00 PM<br>
-           Saturday: 10:00 AM - 5:00 PM<br>
-           Sunday: Closed</p>
-      </div>
+  <section class="contact-hero">
+    <div class="contact-hero-container">
+      <h1>Get in Touch</h1>
+      <p>We'd love to hear from you. Let's start a conversation today.</p>
     </div>
+  </section>
 
-    <!-- Right Side: Contact Form -->
-    <div class="contact-form">
-      <h2>Send us a Message</h2>
-      <form>
-        <div class="form-row">
-          <input type="text" placeholder="First Name" required>
-          <input type="text" placeholder="Last Name" required>
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="contact-container">
+      <!-- Left Side: Contact Info -->
+      <div class="contact-info">
+        <div class="info-card">
+          <i class="fas fa-phone-alt"></i>
+          <h3>Phone</h3>
+          <p>+92 51 2345678<br>+92 51 2345679</p>
         </div>
-        <input type="email" placeholder="Email Address" required>
-        <input type="text" placeholder="Phone Number" required>
-        <input type="text" placeholder="Subject" required>
-        <textarea rows="5" placeholder="Message" required></textarea>
-        <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
-      </form>
-    </div>
-  </div>
-</section>
 
+        <div class="info-card">
+          <i class="fas fa-envelope"></i>
+          <h3>Email</h3>
+          <p>info@maharajabuilders.pk<br>support@maharajabuilders.pk</p>
+        </div>
+
+        <div class="info-card">
+          <i class="fas fa-map-marker-alt"></i>
+          <h3>Head Office</h3>
+          <p>Plot 123, Street 5, F-7 Markaz,<br>Islamabad, Pakistan 44000</p>
+        </div>
+
+        <div class="info-card">
+          <i class="fas fa-clock"></i>
+          <h3>Working Hours</h3>
+          <p>Monday - Friday: 9:00 AM - 7:00 PM<br>
+             Saturday: 10:00 AM - 5:00 PM<br>
+             Sunday: Closed</p>
+        </div>
+      </div>
+
+      <!-- Right Side: Contact Form -->
+      <div class="contact-form">
+        <h2>Send us a Message</h2>
+        <form id="contactForm">
+          <div class="form-row">
+            <input type="text" id="firstName" placeholder="First Name" required>
+            <input type="text" id="lastName" placeholder="Last Name" required>
+          </div>
+          <input type="email" id="email" placeholder="Email Address" required>
+          <input type="tel" id="phone" placeholder="Phone Number" required>
+          <input type="text" id="subject" placeholder="Subject" required>
+          <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+          <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer Section -->
-<footer class="footer">
-  <div class="footer-container">
-    
-    <!-- Column 1: Logo & Social -->
-    <div class="footer-col">
-      <img src="img/maharaja_wht.avif" alt="Maharaja Builders Logo" class="footer-logo" />
-      <p>Your trusted partner in finding the perfect property. Excellence in real estate since 1999.</p>
-      <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+  <footer class="footer">
+    <div class="footer-container">
+      
+      <!-- Column 1: Logo & Social -->
+      <div class="footer-col">
+        <img src="img/maharaja_wht.avif" alt="Maharaja Builders Logo" class="footer-logo" />
+        <p>Your trusted partner in finding the perfect property. Excellence in real estate since 1999.</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Links -->
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="properties.html"><i class="fas fa-chevron-right"></i> Properties</a></li>
+          <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+          <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+          <li><a href="buy.html"><i class="fas fa-chevron-right"></i> Buy</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Resources -->
+      <div class="footer-col">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Blog & News</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> FAQs</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Site Map</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Contact Us -->
+      <div class="footer-col">
+        <h3>Contact Us</h3>
+        <p><i class="fas fa-map-marker-alt"></i> Plot 123, Street 5, F-7 Markaz<br>Islamabad, Pakistan 44000</p>
+        <p><i class="fas fa-phone"></i> +92 51 2345678<br>
+           <i class="fas fa-envelope"></i> contact@maharajabuilders.pk</p>
+        <p><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 7:00 PM</p>
       </div>
     </div>
 
-    <!-- Column 2: Quick Links -->
-    <div class="footer-col">
-      <h3>Quick Links</h3>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Properties</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Maharaja Builders & Realtors. All rights reserved.</p>
     </div>
+  </footer>
 
-    <!-- Column 3: Resources -->
-    <div class="footer-col">
-      <h3>Resources</h3>
-      <ul>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">FAQs</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Terms of Service</a></li>
-      </ul>
-    </div>
-
-    <!-- Column 4: Contact Us -->
-    <div class="footer-col">
-      <h3>Contact Us</h3>
-      <p>Plot 123, Street 5, F-7 Markaz<br>Islamabad, Pakistan 44000</p>
-      <p>+92 51 2345678<br>contact@maharajabuilders.pk</p>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    <p>&copy; 2026 Maharaja Builders & Realtors. All rights reserved.</p>
-  </div>
-</footer>
-<script src="nav.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const contactForm = document.getElementById('contactForm');
+      
+      // Form submission handling
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form values
+        const formData = {
+          firstName: document.getElementById('firstName').value,
+          lastName: document.getElementById('lastName').value,
+          email: document.getElementById('email').value,
+          phone: document.getElementById('phone').value,
+          subject: document.getElementById('subject').value,
+          message: document.getElementById('message').value
+        };
+        
+        // Basic validation
+        const requiredFields = ['firstName', 'lastName', 'email', 'subject', 'message'];
+        let isValid = true;
+        
+        requiredFields.forEach(fieldId => {
+          const field = document.getElementById(fieldId);
+          if (!field.value.trim()) {
+            field.style.borderColor = '#e74c3c';
+            isValid = false;
+          } else {
+            field.style.borderColor = '#ddd';
+          }
+        });
+        
+        // Email validation
+        const emailField = document.getElementById('email');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailField.value && !emailRegex.test(emailField.value)) {
+          emailField.style.borderColor = '#e74c3c';
+          isValid = false;
+        }
+        
+        if (!isValid) {
+          alert('Please fill in all required fields correctly.');
+          return;
+        }
+        
+        // Show success message (in real implementation, this would send to server)
+        alert('✅ Thank you for your message!\n\nWe have received your inquiry and will get back to you within 24 hours.');
+        
+        // Reset form
+        contactForm.reset();
+      });
+      
+      // Real-time validation
+      const inputs = contactForm.querySelectorAll('input, textarea');
+      inputs.forEach(input => {
+        input.addEventListener('input', function() {
+          if (this.value.trim()) {
+            this.style.borderColor = '#ddd';
+          }
+        });
+      });
+    });
+  </script>
 </body>
+</html>

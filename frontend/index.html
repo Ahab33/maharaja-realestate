@@ -27,6 +27,67 @@
       line-height: 1.6;
     }
 
+    /* ---------- INFO NOTIFICATION BANNER ---------- */
+    .info-notification {
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      background: var(--primary-green);
+      color: var(--pure-white);
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(13, 46, 30, 0.2);
+      z-index: 999;
+      max-width: 280px;
+      font-size: 0.85rem;
+      border-left: 4px solid var(--accent-gold);
+      transform: translateX(0);
+      transition: all 0.3s ease;
+      animation: slideIn 0.5s ease-out;
+    }
+
+    .info-notification.hidden {
+      transform: translateX(120%);
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(120%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .info-notification i {
+      color: var(--accent-gold);
+      margin-right: 8px;
+    }
+
+    .info-notification strong {
+      color: var(--accent-gold);
+      font-weight: 600;
+    }
+
+    .notification-close {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: var(--pure-white);
+      font-size: 0.8rem;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .notification-close:hover {
+      opacity: 1;
+    }
+
     /* ---------- NAVBAR ---------- */
     .navbar {
       display: flex;
@@ -39,6 +100,27 @@
       top: 0;
       z-index: 1000;
     }
+
+
+ /* Fix navbar alignment after adding Become a Seller button */
+.navbar {
+  justify-content: center;
+  gap: 40px;
+}
+
+.nav-left {
+  position: absolute;
+  left: 40px;
+}
+
+.user-nav {
+  position: absolute;
+  right: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 
     .brand {
       display: flex;
@@ -591,6 +673,13 @@
       .cities-grid-compact {
         grid-template-columns: repeat(2, 1fr);
       }
+      
+      .info-notification {
+        top: 80px;
+        right: 10px;
+        max-width: 250px;
+        font-size: 0.8rem;
+      }
     }
 
     @media (max-width: 768px) {
@@ -619,6 +708,16 @@
       .location-list-simple .count-badge {
         font-size: 0.8rem;
         min-width: 60px;
+      }
+      
+      .info-notification {
+        position: fixed;
+        top: auto;
+        bottom: 20px;
+        right: 20px;
+        left: 20px;
+        max-width: none;
+        text-align: center;
       }
     }
 
@@ -653,6 +752,14 @@
       
       .city-item .count {
         align-self: flex-start;
+      }
+      
+      .info-notification {
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+        padding: 10px 15px;
+        font-size: 0.75rem;
       }
     }
 
@@ -873,27 +980,39 @@
 </head>
 <body>
 
+  <!-- INFO NOTIFICATION BANNER -->
+  <div class="info-notification" id="infoNotification">
+    <button class="notification-close" id="closeNotification">×</button>
+    <p><i class="fas fa-info-circle"></i> <strong>Note:</strong> Property listing is <strong>FREE</strong> in Bahria & DHA locations. Other properties may have listing fees.</p>
+  </div>
+
   <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="nav-left">
-      <div class="brand">
-        <img src="img/maharaja.png" alt="Logo" class="logo" />
-      </div>
+<header class="navbar">
+  <div class="nav-left">
+    <div class="brand">
+      <img src="img/maharaja.png" alt="Logo" class="logo" />
     </div>
-    <nav class="nav-center">
-      <a href="index.html"><i class="fas fa-home"></i> Home</a>
-      <a href="buy.html"><i class="fas fa-search"></i> Buy</a>
-      <a href="rent.html"><i class="fas fa-key"></i> Rent</a>
-      <a href="sale.html"><i class="fas fa-tag"></i> Sale</a>
-      <a href="properties.html"><i class="fas fa-building"></i> Properties</a>
-      <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
-      <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
-    </nav>
-    <div id="user-nav" class="user-nav">
-      <a href="login.html">Login</a>
-      <a href="signup.html" class="signup-btn">Sign Up</a>
-    </div>
-  </header>
+  </div>
+
+  <nav class="nav-center">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="buy.html"><i class="fas fa-search"></i> Buy</a>
+     <a href="sale.html"><i class="fas fa-tag"></i> Sell</a>
+    <a href="rent.html"><i class="fas fa-key"></i> Rent</a>
+    <a href="properties.html"><i class="fas fa-building"></i> Other Properties</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+    <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+  </nav>
+
+  <div id="user-nav" class="user-nav">
+    <a href="login.html">Login</a>
+    <a href="signup.html" class="signup-btn">Sign Up</a>
+    <a href="dashboard.html" class="signup-btn" style="margin-left: 10px; background: var(--accent-gold); color: var(--primary-green);">
+      <i class="fas fa-user-tie"></i> Become a Seller
+    </a>
+  </div>
+</header>
+
 
   <!-- HERO SECTION -->
   <header class="hero">
@@ -1226,6 +1345,24 @@
   </footer>
 
   <script>
+    // Info Notification Functionality - ALWAYS SHOWS ON PAGE LOAD
+    const infoNotification = document.getElementById('infoNotification');
+    const closeNotificationBtn = document.getElementById('closeNotification');
+    
+    // Close notification when X is clicked (only hides for current session)
+    closeNotificationBtn.addEventListener('click', () => {
+      infoNotification.classList.add('hidden');
+    });
+    
+    // REMOVED the localStorage check - notification will always show on page load
+    
+    // REMOVED the auto-hide timeout - notification stays until manually closed
+    
+    // Show notification immediately on page load
+    // (It's already visible in the HTML, but this ensures it's not hidden)
+    infoNotification.classList.remove('hidden');
+    
+    // Original property search functionality
     const countrySelect = document.getElementById("country");
     const citySelect = document.getElementById("city");
     const propertyGrid = document.getElementById("property-grid");

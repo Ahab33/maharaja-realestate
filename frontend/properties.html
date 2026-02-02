@@ -3,194 +3,1107 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maharaja Builders & Realtors</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a2d9d6f6a7.js" crossorigin="anonymous"></script>
+  <title>Properties - Maharaja Builders & Realtors</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary-green: #0d2e1e;
+      --secondary-green: #13452a;
+      --dark-green: #0a2316;
+      --light-green: #e8f5ee;
+      --accent-gold: #d4af37;
+      --pure-white: #ffffff;
+      --light-gray: #f5f5f5;
+      --text-dark: #0d2e1e;
+      --text-light: #666;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      color: var(--text-dark);
+      background: var(--light-green);
+    }
+    
+    /* ---------- NAVBAR ---------- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--pure-white);
+      box-shadow: 0 4px 12px rgba(13, 46, 30, 0.08);
+      padding: 15px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    /* Fix navbar alignment after adding Become a Seller button */
+    .navbar {
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .nav-left {
+      position: absolute;
+      left: 40px;
+    }
+
+    .user-nav {
+      position: absolute;
+      right: 40px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .nav-center {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-center a {
+      text-decoration: none;
+      color: var(--primary-green);
+      font-weight: 500;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 5px 0;
+    }
+
+    .nav-center a:hover {
+      color: var(--secondary-green);
+    }
+
+    .nav-center a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--primary-green);
+      transition: width 0.3s ease;
+    }
+
+    .nav-center a:hover::after {
+      width: 100%;
+    }
+
+    .user-nav a {
+      text-decoration: none;
+      color: var(--primary-green);
+      font-weight: 500;
+      margin-left: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .user-nav .signup-btn {
+      background: var(--primary-green);
+      color: var(--pure-white);
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    .user-nav .signup-btn:hover {
+      background: var(--secondary-green);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(13, 46, 30, 0.2);
+    }
+
+    /* ---------- HERO ---------- */
+    .properties-hero {
+      background: var(--dark-green);
+      padding: 80px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .properties-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), transparent);
+      pointer-events: none;
+    }
+
+    .properties-hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+      color: var(--pure-white);
+      position: relative;
+    }
+
+    .properties-hero p {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* ---------- FILTER + PROPERTY GRID ---------- */
+    .properties-section {
+      display: flex;
+      justify-content: center;
+      padding: 60px 20px;
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+      flex-wrap: wrap;
+    }
+
+    .filter-sidebar {
+      background: var(--pure-white);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 25px;
+      flex: 0 0 270px;
+      height: fit-content;
+      position: sticky;
+      top: 100px;
+    }
+
+    .filter-sidebar h3 {
+      color: var(--primary-green);
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .filter-sidebar h3 i {
+      color: var(--accent-gold);
+    }
+
+    .filter-group {
+      margin-bottom: 25px;
+    }
+
+    .filter-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .filter-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: 'Poppins', sans-serif;
+      background: var(--pure-white);
+      cursor: pointer;
+    }
+
+    .checkbox-group {
+      max-height: 200px;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+
+    .checkbox-group::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .checkbox-group::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 3px;
+    }
+
+    .checkbox-group::-webkit-scrollbar-thumb {
+      background: var(--accent-gold);
+      border-radius: 3px;
+    }
+
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      color: var(--text-light);
+      cursor: pointer;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      margin-right: 10px;
+      accent-color: var(--primary-green);
+      cursor: pointer;
+      width: 16px;
+      height: 16px;
+    }
+
+    .reset-btn {
+      width: 100%;
+      background: var(--primary-green);
+      color: var(--pure-white);
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition: 0.3s;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .reset-btn:hover {
+      background: var(--secondary-green);
+      transform: translateY(-2px);
+    }
+
+    /* ---------- PROPERTY GRID ---------- */
+    .properties-right {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .properties-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding: 15px;
+      background: var(--pure-white);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .properties-top p {
+      font-weight: 600;
+      color: var(--text-dark);
+      margin: 0;
+    }
+
+    .properties-top select {
+      padding: 8px 15px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: 'Poppins', sans-serif;
+      background: var(--pure-white);
+      cursor: pointer;
+    }
+
+    .properties-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .property-card {
+      background: var(--pure-white);
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .property-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+    }
+
+    .property-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .property-info {
+      padding: 20px;
+    }
+
+    .property-info h3 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    .property-location {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    .property-location i {
+      color: var(--accent-gold);
+    }
+
+    .property-features {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--text-light);
+      font-size: 0.85rem;
+    }
+
+    .feature i {
+      color: var(--primary-green);
+    }
+
+    .price {
+      color: var(--primary-green);
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-top: 6px;
+    }
+
+    .property-tag {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: var(--accent-gold);
+      color: var(--primary-green);
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .card-top {
+      position: relative;
+    }
+
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px;
+      color: var(--text-light);
+    }
+
+    .no-results i {
+      font-size: 3rem;
+      color: #ddd;
+      margin-bottom: 20px;
+    }
+
+    /* ---------- FOOTER ---------- */
+    .footer {
+      background: var(--primary-green);
+      color: var(--pure-white);
+      padding: 60px 20px 30px;
+      font-size: 0.95rem;
+      position: relative;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--accent-gold);
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 40px;
+    }
+
+    .footer-col {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .footer-logo {
+      width: 160px;
+      margin-bottom: 20px;
+      filter: brightness(0) invert(1);
+    }
+
+    .footer-col h3 {
+      color: var(--accent-gold);
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--accent-gold);
+    }
+
+    .footer-col p {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer-col ul li a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--accent-gold);
+      padding-left: 5px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--pure-white);
+      border-radius: 50%;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background: var(--accent-gold);
+      color: var(--primary-green);
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 50px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 20px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 900px) {
+      .properties-section {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .filter-sidebar {
+        position: static;
+        width: 100%;
+        max-width: 500px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- Navbar -->
+  <!-- NAVBAR -->
   <header class="navbar">
     <div class="nav-left">
-      
       <div class="brand">
         <img src="img/maharaja.png" alt="Logo" class="logo" />
       </div>
     </div>
-  <nav class="nav-center">
+
+    <nav class="nav-center">
       <a href="index.html"><i class="fas fa-home"></i> Home</a>
-      <a href="buy.html"><i class="fas fa-home"></i> Buy</a>
-      <a href="rent.html"><i class="fas fa-home"></i> Rent</a>
-      <a href="sale.html"><i class="fas fa-home"></i> Sale</a>
-      <a href="properties.html"><i class="fas fa-building"></i> Properties</a>
+      <a href="buy.html"><i class="fas fa-search"></i> Buy</a>
+      <a href="sale.html"><i class="fas fa-tag"></i> Sell</a>
+      <a href="rent.html"><i class="fas fa-key"></i> Rent</a>
+      <a href="properties.html"><i class="fas fa-building"></i> Other Properties</a>
       <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
       <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
     </nav>
-     <!-- Placeholder for user nav -->
-  <div id="user-nav" class="user-nav">
-  <a href="login.html">Login</a>
-  <a href="signup.html" class="signup-btn">Sign Up</a>
-</div>
+
+    <div id="user-nav" class="user-nav">
+      <a href="login.html">Login</a>
+      <a href="signup.html" class="signup-btn">Sign Up</a>
+      <a href="dashboard.html" class="signup-btn" style="margin-left: 10px; background: var(--accent-gold); color: var(--primary-green);">
+        <i class="fas fa-user-tie"></i> Become a Seller
+      </a>
+    </div>
   </header>
 
-  <!-- Properties Page Hero Section -->
-<section class="properties-hero">
-  <div class="properties-hero-container">
+  <!-- Hero -->
+  <section class="properties-hero">
     <h1>Luxury Properties</h1>
-    <p>Explore our collection of premium real estate.</p>
-  </div>
-</section>
+    <p>Explore our curated selection of premium real estate listings across Pakistan's most desirable cities.</p>
+  </section>
 
-<!-- Properties Filter and Listings Section -->
-<section class="properties-section">
-  <div class="properties-container">
-
-    <!-- Filter Sidebar -->
+  <!-- Filter & Properties -->
+  <section class="properties-section">
     <aside class="filter-sidebar">
-      <button class="reset-btn">Reset Filters</button>
+      <h3><i class="fas fa-filter"></i> Filter Properties</h3>
+      <button class="reset-btn" id="reset-filters">Reset All Filters</button>
 
-      <!-- Property Type -->
       <div class="filter-group">
         <label for="property-type">Property Type</label>
         <select id="property-type">
-          <option value="">Select Type</option>
+          <option value="">All Types</option>
           <option value="house">House</option>
           <option value="apartment">Apartment</option>
           <option value="villa">Villa</option>
+          <option value="penthouse">Penthouse</option>
+          <option value="commercial">Commercial</option>
+          <option value="plot">Plot</option>
         </select>
       </div>
 
-      <!-- Listing Type -->
+      <div class="filter-group">
+        <label for="city-filter">City</label>
+        <select id="city-filter">
+          <option value="">All Cities</option>
+          <option value="islamabad">Islamabad</option>
+          <option value="rawalpindi">Rawalpindi</option>
+          <option value="karachi">Karachi</option>
+          <option value="lahore">Lahore</option>
+          <option value="peshawar">Peshawar</option>
+          <option value="faisalabad">Faisalabad</option>
+          <option value="multan">Multan</option>
+        </select>
+      </div>
+
       <div class="filter-group">
         <label>Listing Type</label>
         <div class="checkbox-group">
-          <label><input type="checkbox" value="sale" class="listing-type" /> For Sale</label>
-          <label><input type="checkbox" value="rent" class="listing-type" /> For Rent</label>
+          <label><input type="checkbox" value="sale" class="listing-filter"> For Sale</label>
+          <label><input type="checkbox" value="rent" class="listing-filter"> For Rent</label>
         </div>
       </div>
 
-      
-     <!-- Price Range -->
-<div class="filter-group">
-  <label>Price Range (₹)</label>
-  <div class="price-range">
-    <input type="range" min="0" max="100000000" step="100000" id="min-price" value="0">
-    <input type="range" min="0" max="100000000" step="100000" id="max-price" value="100000000">
-    <div class="price-tooltip" id="min-price-tooltip">₹0</div>
-    <div class="price-tooltip" id="max-price-tooltip">₹10 Cr+</div>
-  </div>
-</div>
-
-
-
-      <!-- Bedrooms -->
       <div class="filter-group">
         <label>Bedrooms</label>
-        <div class="bedroom-buttons">
-          <button data-bed="1">1</button>
-          <button data-bed="2">2</button>
-          <button data-bed="3">3</button>
-          <button data-bed="4">4+</button>
+        <div class="checkbox-group">
+          <label><input type="checkbox" value="1" class="bedroom-filter"> 1 Bedroom</label>
+          <label><input type="checkbox" value="2" class="bedroom-filter"> 2 Bedrooms</label>
+          <label><input type="checkbox" value="3" class="bedroom-filter"> 3 Bedrooms</label>
+          <label><input type="checkbox" value="4" class="bedroom-filter"> 4+ Bedrooms</label>
         </div>
       </div>
 
-      <!-- Amenities -->
       <div class="filter-group">
-        <label>Amenities</label>
-        <div class="checkbox-group">
-          <label><input type="checkbox" value="swimming_pool" class="amenity" /> Swimming Pool</label>
-          <label><input type="checkbox" value="gym" class="amenity" /> Gym</label>
-          <label><input type="checkbox" value="parking" class="amenity" /> Parking</label>
-          <label><input type="checkbox" value="security" class="amenity" /> Security</label>
-          <label><input type="checkbox" value="garden" class="amenity" /> Garden</label>
-        </div>
+        <label>Price Range</label>
+        <select id="price-filter">
+          <option value="">Any Price</option>
+          <option value="0-10000000">Under PKR 1 Crore</option>
+          <option value="10000000-25000000">PKR 1-2.5 Crore</option>
+          <option value="25000000-50000000">PKR 2.5-5 Crore</option>
+          <option value="50000000-100000000">PKR 5-10 Crore</option>
+          <option value="100000000+">Over PKR 10 Crore</option>
+        </select>
       </div>
     </aside>
 
-    <!-- Property Cards (Right side) -->
-    <!-- Property Cards (Right side) -->
-<div class="properties-right">
+    <div class="properties-right">
+      <div class="properties-top">
+        <p id="properties-count">Loading Properties...</p>
+        <select id="sort-properties">
+          <option value="newest">Newest First</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="bedrooms">Most Bedrooms</option>
+        </select>
+      </div>
 
-  <!-- Top bar: number of properties + sort -->
-  <div class="properties-top">
-    <p id="properties-count">0 Properties Found</p>
-    <select id="sort-properties">
-      <option value="newest">Newest First</option>
-      <option value="price-low">Price: Low to High</option>
-      <option value="price-high">Price: High to Low</option>
-      <option value="popular">Most Popular</option>
-    </select>
-  </div>
-
-  <!-- Properties Grid -->
-  <div id="properties-list" class="properties-grid">
-    <!-- Property cards will be injected here dynamically -->
-  </div>
-
-  <!-- Pagination -->
-  <div class="pagination" id="pagination"></div>
-
-</div>
-
-
-  </div>
-</section>
-
-
-<!-- Footer Section -->
-<footer class="footer">
-  <div class="footer-container">
-    
-    <!-- Column 1: Logo & Social -->
-    <div class="footer-col">
-      <img src="img/maharaja_wht.avif" alt="Maharaja Builders Logo" class="footer-logo" />
-      <p>Your trusted partner in finding the perfect property. Excellence in real estate since 1999.</p>
-      <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <div id="properties-grid" class="properties-grid">
+        <!-- Properties will be loaded here dynamically -->
       </div>
     </div>
+  </section>
 
-    <!-- Column 2: Quick Links -->
-    <div class="footer-col">
-      <h3>Quick Links</h3>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Properties</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="footer-container">
+      
+      <!-- Column 1: Logo & Social -->
+      <div class="footer-col">
+        <img src="img/maharaja_wht.avif" alt="Maharaja Builders Logo" class="footer-logo" />
+        <p>Your trusted partner in finding the perfect property. Excellence in real estate since 1999.</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Links -->
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Properties</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Contact</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Services</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Resources -->
+      <div class="footer-col">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Blog & News</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> FAQs</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Site Map</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Contact Us -->
+      <div class="footer-col">
+        <h3>Contact Us</h3>
+        <p><i class="fas fa-map-marker-alt"></i> Plot 123, Street 5, F-7 Markaz<br>Islamabad, Pakistan 44000</p>
+        <p><i class="fas fa-phone"></i> +92 51 2345678<br>
+           <i class="fas fa-envelope"></i> contact@maharajabuilders.pk</p>
+        <p><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 7:00 PM</p>
+      </div>
+
     </div>
 
-    <!-- Column 3: Resources -->
-    <div class="footer-col">
-      <h3>Resources</h3>
-      <ul>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">FAQs</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Terms of Service</a></li>
-      </ul>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Maharaja Builders & Realtors. All rights reserved.</p>
     </div>
+  </footer>
 
-    <!-- Column 4: Contact Us -->
-    <div class="footer-col">
-      <h3>Contact Us</h3>
-      <p>Plot 123, Street 5, F-7 Markaz<br>Islamabad, Pakistan 44000</p>
-      <p>+92 51 2345678<br>contact@maharajabuilders.pk</p>
-    </div>
+  <!-- Fully Functional Properties Script -->
+  <script>
+    // Sample property data with more details
+    const properties = [
+      { 
+        id: 1,
+        title: "Luxury Apartment in F-7", 
+        location: "Islamabad", 
+        city: "islamabad",
+        price: 25000000, 
+        type: "apartment",
+        listingType: "sale",
+        bedrooms: 3,
+        bathrooms: 3,
+        area: "2,500 sq ft",
+        img: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg",
+        featured: true,
+        date: "2026-01-15"
+      },
+      { 
+        id: 2,
+        title: "Modern Villa with Pool", 
+        location: "Karachi", 
+        city: "karachi",
+        price: 48000000, 
+        type: "villa",
+        listingType: "sale",
+        bedrooms: 5,
+        bathrooms: 6,
+        area: "8,000 sq ft",
+        img: "https://i.pinimg.com/736x/60/d3/f2/60d3f2f8d7a0d774bf83953db51dbecc.jpg",
+        featured: true,
+        date: "2026-01-10"
+      },
+      { 
+        id: 3,
+        title: "Stylish Flat in DHA", 
+        location: "Lahore", 
+        city: "lahore",
+        price: 19000000, 
+        type: "apartment",
+        listingType: "sale",
+        bedrooms: 2,
+        bathrooms: 2,
+        area: "1,800 sq ft",
+        img: "https://i.pinimg.com/736x/1b/47/4c/1b474c90f4368dbb0158439aab01392d.jpg",
+        featured: false,
+        date: "2026-01-05"
+      },
+      { 
+        id: 4,
+        title: "Executive Penthouse", 
+        location: "Islamabad", 
+        city: "islamabad",
+        price: 75000000, 
+        type: "penthouse",
+        listingType: "sale",
+        bedrooms: 4,
+        bathrooms: 5,
+        area: "4,500 sq ft",
+        img: "https://i.pinimg.com/736x/3a/5f/46/3a5f46e74a39c67a038567c4451e12f0.jpg",
+        featured: true,
+        date: "2026-01-20"
+      },
+      { 
+        id: 5,
+        title: "Family House in Bahria", 
+        location: "Rawalpindi", 
+        city: "rawalpindi",
+        price: 12000000, 
+        type: "house",
+        listingType: "sale",
+        bedrooms: 3,
+        bathrooms: 3,
+        area: "2,000 sq ft",
+        img: "https://i.pinimg.com/736x/0a/63/a3/0a63a3e9a5ad48c8ac5e21c9b67a27f5.jpg",
+        featured: false,
+        date: "2025-12-28"
+      },
+      { 
+        id: 6,
+        title: "Commercial Space in Blue Area", 
+        location: "Islamabad", 
+        city: "islamabad",
+        price: 95000000, 
+        type: "commercial",
+        listingType: "sale",
+        bedrooms: 0,
+        bathrooms: 2,
+        area: "5,000 sq ft",
+        img: "https://i.pinimg.com/736x/8a/9e/34/8a9e34bf267c0b5f3d47a3b444185a8e.jpg",
+        featured: true,
+        date: "2026-01-18"
+      },
+      { 
+        id: 7,
+        title: "Luxury Villa for Rent", 
+        location: "Lahore", 
+        city: "lahore",
+        price: 450000, 
+        type: "villa",
+        listingType: "rent",
+        bedrooms: 4,
+        bathrooms: 4,
+        area: "6,000 sq ft",
+        img: "https://i.pinimg.com/736x/f5/c0/2e/f5c02e9d9b995c78905b2c20c5f8fea9.jpg",
+        featured: false,
+        date: "2026-01-12"
+      },
+      { 
+        id: 8,
+        title: "Plot in Prime Location", 
+        location: "Faisalabad", 
+        city: "faisalabad",
+        price: 8500000, 
+        type: "plot",
+        listingType: "sale",
+        bedrooms: 0,
+        bathrooms: 0,
+        area: "1,000 sq yd",
+        img: "https://i.pinimg.com/736x/4a/5a/57/4a5a578bdba6d6f4272c36cdaf55e6cf.jpg",
+        featured: false,
+        date: "2025-12-30"
+      },
+      { 
+        id: 9,
+        title: "Modern Apartment for Rent", 
+        location: "Karachi", 
+        city: "karachi",
+        price: 180000, 
+        type: "apartment",
+        listingType: "rent",
+        bedrooms: 2,
+        bathrooms: 2,
+        area: "1,500 sq ft",
+        img: "https://i.pinimg.com/736x/9b/8a/13/9b8a13512e8e50645991d1170d1787a6.jpg",
+        featured: true,
+        date: "2026-01-08"
+      },
+      { 
+        id: 10,
+        title: "Luxury House in Peshawar", 
+        location: "Peshawar", 
+        city: "peshawar",
+        price: 35000000, 
+        type: "house",
+        listingType: "sale",
+        bedrooms: 4,
+        bathrooms: 4,
+        area: "3,500 sq ft",
+        img: "https://i.pinimg.com/736x/7d/22/3a/7d223a1beb4e12c9a4b5389771e6c034.jpg",
+        featured: false,
+        date: "2026-01-03"
+      },
+      { 
+        id: 11,
+        title: "Penthouse with City View", 
+        location: "Multan", 
+        city: "multan",
+        price: 28000000, 
+        type: "penthouse",
+        listingType: "sale",
+        bedrooms: 3,
+        bathrooms: 3,
+        area: "3,000 sq ft",
+        img: "https://i.pinimg.com/736x/6c/9e/8d/6c9e8d3e3d3330a2a9f3cd3ee814ad76.jpg",
+        featured: true,
+        date: "2026-01-25"
+      },
+      { 
+        id: 12,
+        title: "Studio Apartment for Rent", 
+        location: "Islamabad", 
+        city: "islamabad",
+        price: 75000, 
+        type: "apartment",
+        listingType: "rent",
+        bedrooms: 1,
+        bathrooms: 1,
+        area: "800 sq ft",
+        img: "https://i.pinimg.com/736x/e5/81/8d/e5818d85171518bdf4cbf76109547602.jpg",
+        featured: false,
+        date: "2026-01-22"
+      }
+    ];
 
-  </div>
+    // DOM Elements
+    const propertyGrid = document.getElementById("properties-grid");
+    const propertyCount = document.getElementById("properties-count");
+    const resetBtn = document.getElementById("reset-filters");
+    const sortSelect = document.getElementById("sort-properties");
+    const propertyTypeSelect = document.getElementById("property-type");
+    const cityFilterSelect = document.getElementById("city-filter");
+    const priceFilterSelect = document.getElementById("price-filter");
+    const listingFilters = document.querySelectorAll('.listing-filter');
+    const bedroomFilters = document.querySelectorAll('.bedroom-filter');
 
-  <div class="footer-bottom">
-    <p>&copy; 2026 Maharaja Builders & Realtors. All rights reserved.</p>
-  </div>
-</footer>
+    // Initialize filtered properties
+    let filteredProperties = [...properties];
 
+    // Format price to PKR format
+    function formatPrice(price) {
+      if (price >= 10000000) {
+        return `PKR ${(price / 10000000).toFixed(1)} Crore`;
+      } else if (price >= 100000) {
+        return `PKR ${(price / 100000).toFixed(1)} Lakh`;
+      } else {
+        return `PKR ${price.toLocaleString()}`;
+      }
+    }
 
+    // Format price for rent
+    function formatRentPrice(price) {
+      return `PKR ${price.toLocaleString()}/month`;
+    }
 
-<script src="properties.js"></script>
-<script src="nav.js"></script>
+    // Render properties
+    function renderProperties() {
+      propertyGrid.innerHTML = '';
+      
+      if (filteredProperties.length === 0) {
+        propertyGrid.innerHTML = `
+          <div class="no-results">
+            <i class="fas fa-search"></i>
+            <h3>No Properties Found</h3>
+            <p>Try adjusting your filters to find more properties</p>
+          </div>
+        `;
+        propertyCount.textContent = "0 Properties Found";
+        return;
+      }
+      
+      filteredProperties.forEach(property => {
+        const card = document.createElement("div");
+        card.classList.add("property-card");
+        
+        const isForRent = property.listingType === 'rent';
+        const priceText = isForRent ? formatRentPrice(property.price) : formatPrice(property.price);
+        const tagText = isForRent ? 'FOR RENT' : 'FOR SALE';
+        
+        card.innerHTML = `
+          <div class="card-top">
+            <span class="property-tag">${tagText}</span>
+            <img src="${property.img}" alt="${property.title}" class="property-img">
+          </div>
+          <div class="property-info">
+            <h3>${property.title}</h3>
+            <div class="property-location">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>${property.location}</span>
+            </div>
+            <div class="property-features">
+              <div class="feature">
+                <i class="fas fa-bed"></i>
+                <span>${property.bedrooms} Bed</span>
+              </div>
+              <div class="feature">
+                <i class="fas fa-bath"></i>
+                <span>${property.bathrooms} Bath</span>
+              </div>
+              <div class="feature">
+                <i class="fas fa-ruler-combined"></i>
+                <span>${property.area}</span>
+              </div>
+            </div>
+            <div class="price">${priceText}</div>
+          </div>
+        `;
+        propertyGrid.appendChild(card);
+      });
+      
+      propertyCount.textContent = `${filteredProperties.length} Properties Found`;
+    }
+
+    // Filter properties based on all active filters
+    function filterProperties() {
+      const propertyType = propertyTypeSelect.value;
+      const city = cityFilterSelect.value;
+      const priceRange = priceFilterSelect.value;
+      
+      // Get active listing type filters
+      const activeListingTypes = Array.from(listingFilters)
+        .filter(checkbox => checkbox.checked)
+        .map(checkbox => checkbox.value);
+      
+      // Get active bedroom filters
+      const activeBedrooms = Array.from(bedroomFilters)
+        .filter(checkbox => checkbox.checked)
+        .map(checkbox => checkbox.value);
+      
+      // Start with all properties
+      filteredProperties = properties.filter(property => {
+        // Property type filter
+        if (propertyType && property.type !== propertyType) return false;
+        
+        // City filter
+        if (city && property.city !== city) return false;
+        
+        // Listing type filter
+        if (activeListingTypes.length > 0 && !activeListingTypes.includes(property.listingType)) return false;
+        
+        // Bedroom filter
+        if (activeBedrooms.length > 0) {
+          if (activeBedrooms.includes("4") && property.bedrooms < 4) return false;
+          if (!activeBedrooms.includes("4") && !activeBedrooms.includes(property.bedrooms.toString())) return false;
+        }
+        
+        // Price range filter
+        if (priceRange) {
+          if (priceRange === "100000000+") {
+            if (property.price < 100000000) return false;
+          } else {
+            const [min, max] = priceRange.split('-').map(Number);
+            if (property.price < min || property.price > max) return false;
+          }
+        }
+        
+        return true;
+      });
+      
+      // Apply sorting
+      sortProperties();
+      
+      // Render filtered properties
+      renderProperties();
+    }
+
+    // Sort properties based on selected option
+    function sortProperties() {
+      const sortBy = sortSelect.value;
+      
+      switch(sortBy) {
+        case 'price-low':
+          filteredProperties.sort((a, b) => a.price - b.price);
+          break;
+        case 'price-high':
+          filteredProperties.sort((a, b) => b.price - a.price);
+          break;
+        case 'bedrooms':
+          filteredProperties.sort((a, b) => b.bedrooms - a.bedrooms);
+          break;
+        case 'newest':
+        default:
+          filteredProperties.sort((a, b) => new Date(b.date) - new Date(a.date));
+          break;
+      }
+    }
+
+    // Reset all filters
+    function resetFilters() {
+      propertyTypeSelect.value = '';
+      cityFilterSelect.value = '';
+      priceFilterSelect.value = '';
+      sortSelect.value = 'newest';
+      
+      listingFilters.forEach(checkbox => checkbox.checked = false);
+      bedroomFilters.forEach(checkbox => checkbox.checked = false);
+      
+      filteredProperties = [...properties];
+      sortProperties();
+      renderProperties();
+    }
+
+    // Event Listeners
+    propertyTypeSelect.addEventListener('change', filterProperties);
+    cityFilterSelect.addEventListener('change', filterProperties);
+    priceFilterSelect.addEventListener('change', filterProperties);
+    sortSelect.addEventListener('change', filterProperties);
+    
+    listingFilters.forEach(checkbox => {
+      checkbox.addEventListener('change', filterProperties);
+    });
+    
+    bedroomFilters.forEach(checkbox => {
+      checkbox.addEventListener('change', filterProperties);
+    });
+    
+    resetBtn.addEventListener('click', resetFilters);
+
+    // Initial render
+    sortProperties();
+    renderProperties();
+  </script>
+
 </body>
+</html>
