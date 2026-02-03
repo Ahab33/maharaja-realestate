@@ -27,68 +27,61 @@
       line-height: 1.6;
     }
 
-    /* ---------- INFO NOTIFICATION BANNER ---------- */
-    .info-notification {
-      position: fixed;
-      top: 100px;
-      right: 20px;
-      background: var(--primary-green);
-      color: var(--pure-white);
-      padding: 12px 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(13, 46, 30, 0.2);
-      z-index: 999;
-      max-width: 280px;
-      font-size: 0.85rem;
-      border-left: 4px solid var(--accent-gold);
-      transform: translateX(0);
-      transition: all 0.3s ease;
-      animation: slideIn 0.5s ease-out;
+    /* ========== NOTIFICATION BAR - SIMPLE AND GUARANTEED TO SHOW ========== */
+    .notification-bar {
+      background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+      color: white;
+      text-align: center;
+      padding: 15px 20px;
+      position: relative;
+      z-index: 1000;
+      border-bottom: 3px solid var(--accent-gold);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
     }
 
-    .info-notification.hidden {
-      transform: translateX(120%);
-    }
-
-    @keyframes slideIn {
-      from {
-        transform: translateX(120%);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-
-    .info-notification i {
+    .notification-bar i {
       color: var(--accent-gold);
-      margin-right: 8px;
+      font-size: 1.2rem;
     }
 
-    .info-notification strong {
+    .notification-bar p {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .notification-bar strong {
       color: var(--accent-gold);
       font-weight: 600;
     }
 
-    .notification-close {
-      position: absolute;
-      top: 8px;
-      right: 10px;
-      background: none;
+    .close-notification {
+      background: rgba(255, 255, 255, 0.2);
       border: none;
-      color: var(--pure-white);
-      font-size: 0.8rem;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
       cursor: pointer;
-      opacity: 0.7;
-      transition: opacity 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      position: absolute;
+      right: 20px;
+      transition: all 0.3s ease;
     }
 
-    .notification-close:hover {
-      opacity: 1;
+    .close-notification:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
     }
 
-    /* ---------- NAVBAR ---------- */
+    /* ========== NAVBAR ========== */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -98,29 +91,26 @@
       padding: 15px 40px;
       position: sticky;
       top: 0;
-      z-index: 1000;
+      z-index: 999;
     }
 
+    .navbar {
+      justify-content: center;
+      gap: 40px;
+    }
 
- /* Fix navbar alignment after adding Become a Seller button */
-.navbar {
-  justify-content: center;
-  gap: 40px;
-}
+    .nav-left {
+      position: absolute;
+      left: 40px;
+    }
 
-.nav-left {
-  position: absolute;
-  left: 40px;
-}
-
-.user-nav {
-  position: absolute;
-  right: 40px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
+    .user-nav {
+      position: absolute;
+      right: 40px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
     .brand {
       display: flex;
@@ -193,10 +183,10 @@
       box-shadow: 0 4px 12px rgba(13, 46, 30, 0.2);
     }
 
-    /* ---------- HERO SECTION ---------- */
+    /* ========== HERO SECTION ========== */
     header.hero {
       background: linear-gradient(135deg, var(--light-green) 0%, var(--pure-white) 100%);
-      min-height: 75vh;
+      min-height: 80vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -263,507 +253,568 @@
       margin-right: auto;
     }
 
-    .tabs {
-      display: inline-flex;
-      background: var(--pure-white);
-      border-radius: 12px;
-      padding: 6px;
-      box-shadow: 0 4px 15px rgba(13, 46, 30, 0.1);
-      margin-bottom: 30px;
+    .hero-cta {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 40px;
     }
 
-    .tabs button {
-      padding: 12px 35px;
-      border: none;
+    .cta-button {
+      padding: 15px 35px;
+      background: var(--primary-green);
+      color: var(--pure-white);
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      border: 2px solid var(--primary-green);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cta-button:hover {
+      background: var(--secondary-green);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(13, 46, 30, 0.2);
+      border-color: var(--secondary-green);
+    }
+
+    .cta-button.secondary {
       background: transparent;
       color: var(--primary-green);
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 16px;
     }
 
-    .tabs button.active,
-    .tabs button:hover {
-      background: var(--primary-green);
-      color: var(--pure-white);
-      box-shadow: 0 4px 8px rgba(13, 46, 30, 0.2);
+    .cta-button.secondary:hover {
+      background: var(--light-green);
     }
 
-    .search-box {
-      background: var(--pure-white);
-      border-radius: 15px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      justify-content: center;
-      align-items: center;
-      padding: 25px;
-      max-width: 900px;
-      margin: 0 auto;
-      box-shadow: 0 8px 25px rgba(13, 46, 30, 0.1);
-      border: 1px solid rgba(13, 46, 30, 0.1);
-    }
 
-    .search-box select,
-    .search-box button {
-      padding: 15px 25px;
-      border: 2px solid var(--light-green);
-      border-radius: 8px;
-      font-family: 'Poppins', sans-serif;
-      font-size: 16px;
-      transition: all 0.3s ease;
-      background: var(--pure-white);
-      color: var(--primary-green);
-    }
-
-    .search-box select {
-      min-width: 200px;
-      cursor: pointer;
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%230d2e1e' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 15px center;
-      padding-right: 45px;
-    }
-
-    .search-box select:focus {
-      outline: none;
-      border-color: var(--primary-green);
-      box-shadow: 0 0 0 3px rgba(13, 46, 30, 0.1);
-    }
-
-    .search-box button {
-      background: var(--primary-green);
-      color: var(--pure-white);
-      border: none;
-      font-weight: 600;
-      cursor: pointer;
-      min-width: 120px;
-    }
-
-    .search-box button:hover {
-      background: var(--secondary-green);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(13, 46, 30, 0.2);
-    }
-
-    /* ---------- PROPERTY CARDS ---------- */
-    section {
-      padding: 80px 20px;
+    /* COUNTRY CARDS SECTION */
+    .country-cards-section {
       max-width: 1200px;
-      margin: auto;
-    }
-
-    .section-title {
-      font-size: 2.2rem;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 50px;
-      color: var(--primary-green);
+      margin: -60px auto 100px;
+      padding: 0 20px;
       position: relative;
+      z-index: 3;
     }
 
-    .section-title::after {
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 50px;
+      justify-content: center;
+    }
+
+    .country-card {
+      background: var(--pure-white);
+      border-radius: 25px;
+      padding: 60px 50px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 3px solid transparent;
+      box-shadow: 0 20px 50px rgba(13, 46, 30, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .country-card:hover {
+      transform: translateY(-20px) scale(1.02);
+      box-shadow: 0 30px 70px rgba(13, 46, 30, 0.25);
+      border-color: var(--accent-gold);
+    }
+
+    .country-card::before {
       content: '';
       position: absolute;
-      bottom: -15px;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: linear-gradient(90deg, var(--accent-gold) 0%, #ffd700 100%);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .country-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .country-flag {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+      color: var(--pure-white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 40px;
+      font-size: 4rem;
+      transition: all 0.4s ease;
+      box-shadow: 0 15px 30px rgba(13, 46, 30, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .country-card:hover .country-flag {
+      transform: scale(1.15) rotate(10deg);
+      background: linear-gradient(135deg, var(--secondary-green) 0%, var(--primary-green) 100%);
+      box-shadow: 0 20px 40px rgba(13, 46, 30, 0.3);
+    }
+
+    .country-flag i {
+      transition: transform 0.4s ease;
+    }
+
+    .country-card:hover .country-flag i {
+      transform: scale(1.2);
+    }
+
+    .country-card h2 {
+      font-size: 2.5rem;
+      color: var(--primary-green);
+      margin-bottom: 20px;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 20px;
+    }
+
+    .country-card h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
       left: 50%;
       transform: translateX(-50%);
       width: 80px;
       height: 4px;
       background: var(--accent-gold);
       border-radius: 2px;
+      transition: width 0.3s ease;
     }
 
-    .properties {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 30px;
+    .country-card:hover h2::after {
+      width: 120px;
     }
 
-    .card {
-      background: var(--pure-white);
+    .country-description {
+      color: var(--text-light);
+      margin-bottom: 40px;
+      font-size: 1.2rem;
+      line-height: 1.7;
+    }
+
+    .country-stats {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 40px;
+      padding: 30px;
+      background: rgba(13, 46, 30, 0.03);
       border-radius: 15px;
-      box-shadow: 0 6px 20px rgba(13, 46, 30, 0.08);
-      overflow: hidden;
-      transition: all 0.4s ease;
-      border: 1px solid rgba(13, 46, 30, 0.1);
+      border: 2px solid rgba(13, 46, 30, 0.05);
     }
 
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 30px rgba(13, 46, 30, 0.15);
+    .stat-item {
+      text-align: center;
     }
 
-    .card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .card:hover img {
-      transform: scale(1.05);
-    }
-
-    .card-content {
-      padding: 25px;
-    }
-
-    .card-content h3 {
-      font-size: 1.3rem;
+    .stat-number {
+      display: block;
+      font-size: 2.2rem;
+      font-weight: 800;
       color: var(--primary-green);
-      margin-bottom: 10px;
-      font-weight: 600;
+      margin-bottom: 5px;
     }
 
-    .card-content .location {
+    .stat-label {
       font-size: 0.95rem;
       color: var(--text-light);
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
+      font-weight: 500;
     }
 
-    .card-content .location i {
-      color: var(--secondary-green);
-    }
-
-    .price {
-      color: var(--primary-green);
-      font-weight: 700;
-      font-size: 1.4rem;
-      margin-top: 10px;
-    }
-
-     /* ---------- UPDATED POPULAR LOCATIONS SECTION ---------- */
-    .popular-locations-section {
-      margin-top: 80px;
-      background: var(--pure-white);
-      border-radius: 20px;
-      padding: 40px;
-      box-shadow: 0 4px 20px rgba(13, 46, 30, 0.08);
-      border: 1px solid rgba(13, 46, 30, 0.1);
-    }
-
-    .section-header-main {
-      text-align: center;
+    .country-features {
+      text-align: left;
       margin-bottom: 40px;
-    }
-
-    .section-header-main h2 {
-      font-size: 2.5rem;
-      color: var(--primary-green);
-      margin: 0 0 10px 0;
-      font-weight: 700;
-    }
-
-    .location-mode-tabs {
-      display: inline-flex;
-      background: var(--light-green);
-      border-radius: 12px;
-      padding: 5px;
-      margin: 20px 0;
-    }
-
-    .location-mode-tabs button {
-      padding: 12px 40px;
-      border: none;
-      background: transparent;
-      color: var(--primary-green);
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 16px;
-    }
-
-    .location-mode-tabs button.active {
-      background: var(--primary-green);
-      color: var(--pure-white);
-      box-shadow: 0 4px 8px rgba(13, 46, 30, 0.2);
-    }
-
-    .horizontal-divider {
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--light-green), transparent);
-      margin: 30px 0;
-    }
-
-    /* Property Type Sections */
-    .property-type-section {
-      margin-bottom: 60px;
-    }
-
-    .property-type-section h3 {
-      font-size: 1.8rem;
-      color: var(--primary-green);
-      margin-bottom: 30px;
-      padding-bottom: 15px;
-      border-bottom: 2px solid var(--light-green);
-    }
-
-    .cities-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 40px;
-    }
-
-    .city-card {
-      background: var(--pure-white);
-      border-radius: 15px;
       padding: 30px;
-      box-shadow: 0 4px 15px rgba(13, 46, 30, 0.05);
-      border: 1px solid rgba(13, 46, 30, 0.1);
+      background: rgba(13, 46, 30, 0.02);
+      border-radius: 15px;
     }
 
-    .city-card h4 {
+    .country-features h3 {
       color: var(--primary-green);
-      font-size: 1.5rem;
-      margin-bottom: 25px;
-      padding-bottom: 15px;
-      border-bottom: 2px solid var(--light-green);
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: 600;
     }
 
-    .location-list-simple {
+    .features-list {
       list-style: none;
       padding: 0;
-      margin: 0;
     }
 
-    .location-list-simple li {
+    .features-list li {
       margin-bottom: 15px;
-      padding: 12px 15px;
-      background: var(--light-gray);
-      border-radius: 8px;
+      padding-left: 30px;
+      position: relative;
+      color: var(--text-light);
+      line-height: 1.5;
+    }
+
+    .features-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent-gold);
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .country-button {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+      color: var(--pure-white);
+      text-decoration: none;
+      padding: 18px 50px;
+      border-radius: 15px;
+      font-weight: 700;
+      font-size: 1.2rem;
       transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(13, 46, 30, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .country-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(13, 46, 30, 0.3);
+      background: linear-gradient(135deg, var(--secondary-green) 0%, var(--primary-green) 100%);
+    }
+
+    .country-button::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 5px;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.5);
+      opacity: 0;
+      border-radius: 100%;
+      transform: scale(1, 1) translate(-50%);
+      transform-origin: 50% 50%;
+    }
+
+    .country-button:focus:not(:active)::after {
+      animation: ripple 1s ease-out;
+    }
+
+    @keyframes ripple {
+      0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(30, 30);
+        opacity: 0;
+      }
+    }
+
+    /* UAE CARD SPECIFIC STYLES */
+    .uae-card .country-flag {
+      background: linear-gradient(135deg, #ce1126 0%, #009739 100%);
+    }
+
+    .uae-card:hover .country-flag {
+      background: linear-gradient(135deg, #009739 0%, #ce1126 100%);
+    }
+
+    /* PAKISTAN CARD SPECIFIC STYLES */
+    .pakistan-card .country-flag {
+      background: linear-gradient(135deg, #01411C 0%, #FFFFFF 100%);
+    }
+
+    .pakistan-card:hover .country-flag {
+      background: linear-gradient(135deg, #FFFFFF 0%, #01411C 100%);
+    }
+
+    /* SIMPLE UAE CONTACT MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(13, 46, 30, 0.85);
+      z-index: 2000;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-content {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      background: linear-gradient(135deg, #f8f9fa 0%, var(--pure-white) 100%);
+      border-radius: 20px;
+      width: 90%;
+      max-width: 450px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      z-index: 2001;
+      overflow: hidden;
+      animation: modalSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      border: 3px solid var(--accent-gold);
+      padding: 0;
+    }
+
+    @keyframes modalSlideIn {
+      to {
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, #ce1126 0%, #009739 100%);
+      padding: 30px;
+      text-align: center;
       position: relative;
     }
 
-    .location-list-simple li:hover {
-      background: var(--light-green);
-      transform: translateX(5px);
-    }
-
-    .location-list-simple a {
-      text-decoration: none;
-      color: var(--text-dark);
-      font-weight: 500;
-      display: block;
-      padding-right: 100px;
-    }
-
-    .location-list-simple .count-badge {
-      position: absolute;
-      right: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: var(--primary-green);
+    .modal-header h2 {
+      font-size: 1.8rem;
       color: var(--pure-white);
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      min-width: 70px;
+      margin-bottom: 10px;
+      font-weight: 800;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header p {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .modal-body {
+      padding: 40px 30px;
       text-align: center;
     }
 
-    /* Popular Cities Section */
-    .popular-cities-overview {
-      margin-top: 80px;
-      padding-top: 40px;
-      border-top: 2px solid var(--light-green);
-    }
-
-    .popular-cities-overview h3 {
-      font-size: 2rem;
-      color: var(--primary-green);
-      margin-bottom: 40px;
-      text-align: center;
-    }
-
-    .property-category {
-      margin-bottom: 50px;
-    }
-
-    .property-category h4 {
-      font-size: 1.4rem;
-      color: var(--secondary-green);
-      margin-bottom: 25px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--light-green);
-    }
-
-    .cities-grid-compact {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      margin-bottom: 40px;
-    }
-
-    .city-item {
-      background: var(--light-gray);
-      border-radius: 10px;
-      padding: 20px;
-      transition: all 0.3s ease;
-      border: 1px solid transparent;
-    }
-
-    .city-item:hover {
-      background: var(--light-green);
-      border-color: var(--primary-green);
-      transform: translateY(-3px);
-      box-shadow: 0 4px 12px rgba(13, 46, 30, 0.1);
-    }
-
-    .city-item a {
-      text-decoration: none;
-      color: var(--text-dark);
-      font-weight: 500;
+    .phone-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #ce1126 0%, #009739 100%);
+      color: var(--pure-white);
+      border-radius: 50%;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 2.2rem;
+      box-shadow: 0 10px 25px rgba(206, 17, 38, 0.3);
+      animation: pulse 2s infinite;
     }
 
-    .city-item .count {
-      background: var(--primary-green);
-      color: var(--pure-white);
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      min-width: 70px;
-      text-align: center;
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 10px 25px rgba(206, 17, 38, 0.3);
+      }
+      50% {
+        box-shadow: 0 10px 35px rgba(206, 17, 38, 0.5);
+        transform: scale(1.05);
+      }
+      100% {
+        box-shadow: 0 10px 25px rgba(206, 17, 38, 0.3);
+      }
     }
 
-    .view-all-section {
-      text-align: center;
-      margin-top: 50px;
-      padding-top: 30px;
-      border-top: 1px solid var(--light-green);
+    .phone-number {
+      display: block;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary-green);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
     }
 
-    .view-all-link {
-      display: inline-block;
-      padding: 15px 40px;
-      background: var(--primary-green);
+    .phone-label {
+      font-size: 1rem;
+      color: var(--text-light);
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .message {
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      line-height: 1.5;
+      margin: 25px 0;
+      padding: 20px;
+      background: rgba(13, 46, 30, 0.05);
+      border-radius: 12px;
+      border-left: 4px solid var(--accent-gold);
+      font-style: italic;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 25px;
+    }
+
+    .call-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #009739 0%, #ce1126 100%);
       color: var(--pure-white);
       text-decoration: none;
-      border-radius: 8px;
-      font-weight: 600;
+      padding: 15px 30px;
+      border-radius: 12px;
+      font-weight: 700;
       font-size: 1.1rem;
       transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(206, 17, 38, 0.3);
+      flex: 1;
+      max-width: 180px;
     }
 
-    .view-all-link:hover {
-      background: var(--secondary-green);
+    .call-button:hover {
       transform: translateY(-3px);
-      box-shadow: 0 6px 15px rgba(13, 46, 30, 0.2);
+      box-shadow: 0 12px 25px rgba(206, 17, 38, 0.4);
+      background: linear-gradient(135deg, #ce1126 0%, #009739 100%);
     }
 
-    /* Responsive Design */
-    @media (max-width: 992px) {
-      .cities-container {
-        grid-template-columns: 1fr;
-      }
-      
-      .cities-grid-compact {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .info-notification {
-        top: 80px;
-        right: 10px;
-        max-width: 250px;
-        font-size: 0.8rem;
-      }
+    .close-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--primary-green);
+      border: 2px solid var(--primary-green);
+      padding: 13px 30px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      flex: 1;
+      max-width: 180px;
     }
 
+    .close-button:hover {
+      background: var(--primary-green);
+      color: var(--pure-white);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(13, 46, 30, 0.15);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      color: var(--pure-white);
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 2;
+    }
+
+    .close-modal:hover {
+      background: rgba(255, 255, 255, 0.3);
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: rotate(90deg);
+    }
+
+    /* RESPONSIVE DESIGN - Modal specific */
     @media (max-width: 768px) {
-      .popular-locations-section {
-        padding: 25px;
+      .modal-content {
+        max-width: 400px;
       }
       
-      .section-header-main h2 {
-        font-size: 2rem;
+      .modal-header {
+        padding: 25px 20px;
       }
       
-      .location-mode-tabs button {
-        padding: 10px 25px;
-        font-size: 14px;
+      .modal-header h2 {
+        font-size: 1.6rem;
       }
       
-      .city-card {
-        padding: 20px;
+      .modal-body {
+        padding: 30px 25px;
       }
       
-      .location-list-simple a {
-        padding-right: 80px;
-        font-size: 0.9rem;
+      .phone-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 1.8rem;
       }
       
-      .location-list-simple .count-badge {
-        font-size: 0.8rem;
-        min-width: 60px;
+      .phone-number {
+        font-size: 1.7rem;
       }
       
-      .info-notification {
-        position: fixed;
-        top: auto;
-        bottom: 20px;
-        right: 20px;
-        left: 20px;
-        max-width: none;
-        text-align: center;
+      .modal-actions {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .call-button,
+      .close-button {
+        max-width: 100%;
+        width: 100%;
       }
     }
 
     @media (max-width: 480px) {
-      .popular-locations-section {
-        padding: 20px;
+      .modal-content {
+        max-width: 320px;
       }
       
-      .section-header-main h2 {
-        font-size: 1.8rem;
+      .modal-header h2 {
+        font-size: 1.4rem;
       }
       
-      .location-mode-tabs {
-        flex-direction: column;
-        width: 100%;
+      .phone-number {
+        font-size: 1.5rem;
       }
       
-      .location-mode-tabs button {
-        width: 100%;
-        margin-bottom: 5px;
-      }
-      
-      .cities-grid-compact {
-        grid-template-columns: 1fr;
-      }
-      
-      .city-item a {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-      
-      .city-item .count {
-        align-self: flex-start;
-      }
-      
-      .info-notification {
-        bottom: 10px;
-        left: 10px;
-        right: 10px;
-        padding: 10px 15px;
-        font-size: 0.75rem;
+      .message {
+        font-size: 1rem;
+        padding: 15px;
       }
     }
 
-    /* ---------- FOOTER ---------- */
+    /* ========== FOOTER ========== */
     .footer {
       background: var(--primary-green);
       color: var(--pure-white);
@@ -884,135 +935,110 @@
       font-size: 0.85rem;
     }
 
-    /* ---------- RESPONSIVE DESIGN ---------- */
-    @media (max-width: 992px) {
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
       .navbar {
-        padding: 15px 20px;
-        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
       }
       
       .nav-center {
-        order: 3;
-        width: 100%;
+        flex-wrap: wrap;
         justify-content: center;
-        margin-top: 15px;
-        gap: 20px;
+        gap: 15px;
+      }
+      
+      .nav-left, .user-nav {
+        position: relative;
+        left: 0;
+        right: 0;
       }
       
       .hero h1 {
         font-size: 2rem;
       }
       
-      .search-box {
+      .notification-bar {
+        padding: 12px 15px;
         flex-direction: column;
-        align-items: stretch;
+        text-align: center;
+        gap: 10px;
       }
       
-      .search-box select,
-      .search-box button {
-        width: 100%;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        gap: 15px;
+      .notification-bar p {
+        font-size: 0.9rem;
       }
       
-      .nav-center {
-        order: 2;
-        flex-wrap: wrap;
-      }
-      
-      .user-nav {
-        order: 3;
-      }
-      
-      .hero h1 {
-        font-size: 1.8rem;
-      }
-      
-      .tabs button {
-        padding: 10px 20px;
-        font-size: 14px;
-      }
-      
-      .section-title {
-        font-size: 1.8rem;
-      }
-      
-      .footer-container {
-        flex-direction: column;
-        gap: 30px;
+      .close-notification {
+        position: relative;
+        right: 0;
+        margin-top: 5px;
       }
     }
 
     @media (max-width: 480px) {
-      .navbar {
-        padding: 10px;
-      }
-      
-      .nav-center {
-        gap: 10px;
-        font-size: 14px;
-      }
-      
       .hero h1 {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
       }
       
       .logo-hero {
         height: 80px;
       }
       
-      .tabs {
-        flex-direction: column;
+      .cta-button {
         width: 100%;
-        max-width: 300px;
+        justify-content: center;
       }
       
-      .tabs button {
-        width: 100%;
+      .notification-bar p {
+        font-size: 0.85rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- INFO NOTIFICATION BANNER -->
-  <div class="info-notification" id="infoNotification">
-    <button class="notification-close" id="closeNotification">×</button>
-    <p><i class="fas fa-info-circle"></i> <strong>Note:</strong> Property listing is <strong>FREE</strong> in Bahria & DHA locations. Other properties may have listing fees.</p>
-  </div>
+
 
   <!-- NAVBAR -->
-<header class="navbar">
-  <div class="nav-left">
-    <div class="brand">
-      <img src="img/maharaja.png" alt="Logo" class="logo" />
+  <header class="navbar">
+    <div class="nav-left">
+      <div class="brand">
+        <img src="img/maharaja.png" alt="Logo" class="logo" />
+      </div>
     </div>
-  </div>
 
-  <nav class="nav-center">
-    <a href="index.html"><i class="fas fa-home"></i> Home</a>
-    <a href="buy.html"><i class="fas fa-search"></i> Buy</a>
-     <a href="sale.html"><i class="fas fa-tag"></i> Sell</a>
-    <a href="rent.html"><i class="fas fa-key"></i> Rent</a>
-    <a href="properties.html"><i class="fas fa-building"></i> Other Properties</a>
-    <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
-    <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
-  </nav>
+    <nav class="nav-center">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="buy.html"><i class="fas fa-search"></i> Buy</a>
+      <a href="rent.html"><i class="fas fa-key"></i> Rent</a>
+      <a href="properties.html"><i class="fas fa-building"></i> Other Properties</a>
+      <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+      <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+    </nav>
 
-  <div id="user-nav" class="user-nav">
-    <a href="login.html">Login</a>
-    <a href="signup.html" class="signup-btn">Sign Up</a>
-    <a href="dashboard.html" class="signup-btn" style="margin-left: 10px; background: var(--accent-gold); color: var(--primary-green);">
-      <i class="fas fa-user-tie"></i> Become a Seller
-    </a>
-  </div>
-</header>
+    <div id="user-nav" class="user-nav">
+      <a href="login.html">Login</a>
+      <a href="signup.html" class="signup-btn">Sign Up</a>
+      <a href="dashboard.html" class="signup-btn" style="margin-left: 10px; background: var(--accent-gold); color: var(--primary-green);">
+        <i class="fas fa-user-tie"></i> Become a Seller
+      </a>
+    </div>
+  </header>
 
+   <!-- SUPER SIMPLE NOTIFICATION - GUARANTEED TO SHOW -->
+<div style="background: #0d2e1e; color: white; text-align: center; padding: 15px; border-bottom: 3px solid #d4af37;">
+  <p style="margin: 0; font-size: 1rem;">
+    <i class="fas fa-info-circle" style="color: #d4af37;"></i> 
+    <strong style="color: #d4af37;">IMPORTANT:</strong> 
+    Property listing is <strong>FREE</strong> in DHA & Bahria Town locations.
+    <button onclick="this.parentElement.parentElement.style.display='none'" 
+            style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 5px 10px; border-radius: 4px; margin-left: 10px; cursor: pointer;">
+      ×
+    </button>
+  </p>
+</div>
 
   <!-- HERO SECTION -->
   <header class="hero">
@@ -1023,275 +1049,149 @@
       
       <h1>Discover Premium Properties in Pakistan & UAE</h1>
       <p class="hero-subtitle">Find your dream home, commercial space, or investment property with Pakistan's most trusted real estate partner</p>
-
-      <div class="tabs">
-        <button class="active"><i class="fas fa-shopping-cart"></i> BUY</button>
-        <button><i class="fas fa-key"></i> RENT</button>
-        <button><i class="fas fa-building"></i> PROJECTS</button>
-      </div>
-
-      <div class="search-box">
-        <select id="country">
-          <option value="">Select Country</option>
-          <option value="pakistan">Pakistan</option>
-          <option value="uae">UAE</option>
-        </select>
-
-        <select id="city">
-          <option value="">Select City</option>
-        </select>
-
-        <button id="search"><i class="fas fa-search"></i> Find Properties</button>
+      
+      <div class="hero-cta">
+        <a href="buy.html" class="cta-button">
+          <i class="fas fa-search"></i> Browse Properties
+        </a>
+        <a href="sale.html" class="cta-button secondary">
+          <i class="fas fa-tag"></i> List Your Property
+        </a>
       </div>
     </div>
   </header>
 
-   <section>
-    <h2 class="section-title">Featured Properties</h2>
-    <div class="properties" id="property-grid"></div>
-
-    <!-- UPDATED POPULAR LOCATIONS SECTION -->
-    <div class="popular-locations-section">
-      <div class="section-header-main">
-        <h2>Popular Locations</h2>
-        <div class="location-mode-tabs">
-          <button class="active">For Sale</button>
-          <button>To Rent</button>
+   <!-- COUNTRY CARDS SECTION -->
+  <section class="country-cards-section">
+    <div class="cards-container">
+      <!-- PAKISTAN CARD -->
+      <div class="country-card pakistan-card" onclick="window.location.href='buy-pakistan.html'">
+        <div class="country-flag">
+          <i class="fas fa-star-and-crescent"></i>
         </div>
+        <h2>Pakistan</h2>
+        <p class="country-description">
+          Explore our extensive portfolio of premium properties across Pakistan's major cities. 
+          From luxurious villas in Islamabad to commercial spaces in Karachi, find your perfect property.
+        </p>
+        
+        <div class="country-stats">
+          <div class="stat-item">
+            <span class="stat-number">4,236+</span>
+            <span class="stat-label">Properties</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">15+</span>
+            <span class="stat-label">Cities</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">98%</span>
+            <span class="stat-label">Client Satisfaction</span>
+          </div>
+        </div>
+        
+        <div class="country-features">
+          <h3>Key Locations</h3>
+          <ul class="features-list">
+            <li>Islamabad - Capital City Properties</li>
+            <li>Lahore - Historic & Modern Developments</li>
+            <li>Karachi - Commercial & Residential Spaces</li>
+            <li>Rawalpindi - Affordable Housing Solutions</li>
+            <li>Bahria Towns - Premium Gated Communities</li>
+          </ul>
+        </div>
+        
+        <a href="buy-pakistan.html" class="country-button">
+          <i class="fas fa-search"></i> Explore Pakistan Properties
+        </a>
       </div>
 
-      <!-- Most Popular Locations for Plots -->
-      <div class="property-type-section">
-        <h3>Most Popular Locations for Plots</h3>
+      <!-- UAE CARD -->
+      <div class="country-card uae-card" onclick="openUaeModal()">
+        <div class="country-flag">
+          <i class="fas fa-building"></i>
+        </div>
+        <h2>United Arab Emirates</h2>
+        <p class="country-description">
+          Connect with our UAE office for premium property consultations and investment opportunities. 
+          Our expert team is ready to assist you with your real estate needs in the Emirates.
+        </p>
         
-        <div class="cities-container">
-          <!-- Lahore -->
-          <div class="city-card">
-            <h4>Lahore</h4>
-            <ul class="location-list-simple">
-              <li><a href="#">Plots for sale in DHA Defence<span class="count-badge">10,256</span></a></li>
-              <li><a href="#">Plots for sale in Raiwind Road<span class="count-badge">3,193</span></a></li>
-              <li><a href="#">Plots for sale in Park View City<span class="count-badge">2,502</span></a></li>
-              <li><a href="#">Plots for sale in Bahria Orchard<span class="count-badge">1,687</span></a></li>
-              <li><a href="#">Plots for sale in LDA Road<span class="count-badge">1,521</span></a></li>
-              <li><a href="#">Plots for sale in Bahria Town<span class="count-badge">1,474</span></a></li>
-              <li><a href="#">Plots for sale in LDA Avenue<span class="count-badge">1,156</span></a></li>
-              <li><a href="#">Plots for sale in Central Park Housing...<span class="count-badge">913</span></a></li>
-            </ul>
+        <div class="country-stats">
+          <div class="stat-item">
+            <span class="stat-number">24/7</span>
+            <span class="stat-label">Support</span>
           </div>
-
-          <!-- Karachi -->
-          <div class="city-card">
-            <h4>Karachi</h4>
-            <ul class="location-list-simple">
-              <li><a href="#">Plots for sale in Scheme 33<span class="count-badge">3,267</span></a></li>
-              <li><a href="#">Plots for sale in DHA Defence<span class="count-badge">2,063</span></a></li>
-              <li><a href="#">Plots for sale in Gadap Town<span class="count-badge">1,624</span></a></li>
-              <li><a href="#">Plots for sale in Bahria Town Karachi<span class="count-badge">1,280</span></a></li>
-              <li><a href="#">Plots for sale in DHA City Karachi<span class="count-badge">1,049</span></a></li>
-              <li><a href="#">Plots for sale in Naya Nazimabad<span class="count-badge">799</span></a></li>
-              <li><a href="#">Plots for sale in Cantt<span class="count-badge">264</span></a></li>
-              <li><a href="#">Plots for sale in Malir<span class="count-badge">218</span></a></li>
-            </ul>
+          <div class="stat-item">
+            <span class="stat-number">10+</span>
+            <span class="stat-label">Years Experience</span>
           </div>
-
-          <!-- Islamabad -->
-          <div class="city-card">
-            <h4>Islamabad</h4>
-            <ul class="location-list-simple">
-              <li><a href="#">Plots for sale in DHA Defence<span class="count-badge">5,297</span></a></li>
-              <li><a href="#">Plots for sale in Gulberg<span class="count-badge">3,428</span></a></li>
-              <li><a href="#">Plots for sale in B-17<span class="count-badge">2,216</span></a></li>
-              <li><a href="#">Plots for sale in Bahria Town<span class="count-badge">1,730</span></a></li>
-              <li><a href="#">Plots for sale in Faisal Hills<span class="count-badge">1,542</span></a></li>
-              <li><a href="#">Plots for sale in Top City 1<span class="count-badge">1,200</span></a></li>
-              <li><a href="#">Plots for sale in I-12<span class="count-badge">826</span></a></li>
-            </ul>
+          <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Dedicated Service</span>
           </div>
         </div>
-      </div>
-
-      <div class="horizontal-divider"></div>
-
-      <!-- Most Popular Locations for Flats -->
-      <div class="property-type-section">
-        <h3>Most Popular Locations for Flats</h3>
         
-        <div class="cities-container">
-          <!-- Lahore -->
-          <div class="city-card">
-            <h4>Lahore</h4>
-            <ul class="location-list-simple">
-              <li><a href="#">Flats for sale in Askari<span class="count-badge">930</span></a></li>
-              <li><a href="#">Flats for sale in Gulberg<span class="count-badge">556</span></a></li>
-              <li><a href="#">Flats for sale in Bahria Town<span class="count-badge">488</span></a></li>
-              <li><a href="#">Flats for sale in Raiwind Road<span class="count-badge">289</span></a></li>
-              <li><a href="#">Flats for sale in DHA Defence<span class="count-badge">241</span></a></li>
-              <li><a href="#">Flats for sale in Bahria Orchard<span class="count-badge">132</span></a></li>
-              <li><a href="#">Flats for sale in Main Canal Bank Road<span class="count-badge">80</span></a></li>
-              <li><a href="#">Flats for sale in Johar Town<span class="count-badge">60</span></a></li>
-            </ul>
-          </div>
-
-          <!-- Karachi -->
-          <div class="city-card">
-            <h4>Karachi</h4>
-            <ul class="location-list-simple">
-              <li><a href="#">Flats for sale in DHA Defence<span class="count-badge">2,161</span></a></li>
-              <li><a href="#">Flats for sale in Gulistan-e-Jauhar<span class="count-badge">1,233</span></a></li>
-              <li><a href="#">Flats for sale in Gulshan-e-Iqbal Town<span class="count-badge">1,187</span></a></li>
-              <li><a href="#">Flats for sale in Scheme 33<span class="count-badge">1,169</span></a></li>
-              <li><a href="#">Flats for sale in Clifton<span class="count-badge">867</span></a></li>
-              <li><a href="#">Flats for sale in Cantt<span class="count-badge">716</span></a></li>
-              <li><a href="#">Flats for sale in North Nazimabad<span class="count-badge">679</span></a></li>
-              <li><a href="#">Flats for sale in Jamshed Town<span class="count-badge">384</span></a></li>
-            </ul>
-          </div>
-
-          <!-- Islamabad -->
-          <div class="city-card">
-            <h4>Islamabad</h4>
-            <ul class="location-list-simple">
-              <li><a href="#">Flats for sale in DHA Defence<span class="count-badge">779</span></a></li>
-              <li><a href="#">Flats for sale in Gulberg<span class="count-badge">354</span></a></li>
-              <li><a href="#">Flats for sale in B-17<span class="count-badge">307</span></a></li>
-              <li><a href="#">Flats for sale in E-11<span class="count-badge">301</span></a></li>
-              <li><a href="#">Flats for sale in Bahria Town<span class="count-badge">239</span></a></li>
-              <li><a href="#">Flats for sale in Top City 1<span class="count-badge">197</span></a></li>
-              <li><a href="#">Flats for sale in G-11<span class="count-badge">190</span></a></li>
-              <li><a href="#">Flats for sale in Faisal Hills<span class="count-badge">173</span></a></li>
-            </ul>
-          </div>
+        <div class="country-features">
+          <h3>Our UAE Services</h3>
+          <ul class="features-list">
+            <li>Property Investment Consultation</li>
+            <li>Real Estate Market Analysis</li>
+            <li>Legal & Documentation Support</li>
+            <li>Property Management Services</li>
+            <li>Investment Portfolio Management</li>
+          </ul>
         </div>
-      </div>
-
-      <!-- Most Popular Locations for Houses -->
-      <div class="property-type-section">
-        <h3>Most Popular Locations for Houses</h3>
         
-        <div class="cities-container">
-          <!-- Lahore -->
-          <div class="city-card">
-            <h4>Lahore</h4>
-            <ul class="location-list-simple">
-              <li><a href="#">Houses for sale in DHA Defence<span class="count-badge">7,794</span></a></li>
-              <li><a href="#">Houses for sale in Bahria Town<span class="count-badge">1,461</span></a></li>
-              <li><a href="#">Houses for sale in Park View City<span class="count-badge">1,458</span></a></li>
-              <li><a href="#">Houses for sale in Raiwind Road<span class="count-badge">974</span></a></li>
-              <li><a href="#">Houses for sale in Central Park Housing...<span class="count-badge">603</span></a></li>
-              <li><a href="#">Houses for sale in GT Road<span class="count-badge">595</span></a></li>
-              <li><a href="#">Houses for sale in Johar Town<span class="count-badge">588</span></a></li>
-              <li><a href="#">Houses for sale in Bahria Orchard<span class="count-badge">527</span></a></li>
-            </ul>
-          </div>
-
-          <!-- Karachi -->
-          <div class="city-card">
-            <h4>Karachi</h4>
-            <ul class="location-list-simple">
-              <li><a href="#">Houses for sale in DHA Defence<span class="count-badge">2,987</span></a></li>
-              <li><a href="#">Houses for sale in Bahria Town Karachi<span class="count-badge">1,590</span></a></li>
-              <li><a href="#">Houses for sale in Scheme 33<span class="count-badge">1,464</span></a></li>
-              <li><a href="#">Houses for sale in Gulshan-e-Iqbal Town<span class="count-badge">894</span></a></li>
-              <li><a href="#">Houses for sale in Cantt<span class="count-badge">827</span></a></li>
-              <li><a href="#">Houses for sale in Gulistan-e-Jauhar<span class="count-badge">811</span></a></li>
-              <li><a href="#">Houses for sale in Malir<span class="count-badge">742</span></a></li>
-              <li><a href="#">Houses for sale in Gadap Town<span class="count-badge">672</span></a></li>
-            </ul>
-          </div>
-
-          <!-- Islamabad -->
-          <div class="city-card">
-            <h4>Islamabad</h4>
-            <ul class="location-list-simple">
-              <li><a href="#">Houses for sale in DHA Defence<span class="count-badge">1,281</span></a></li>
-              <li><a href="#">Houses for sale in B-17<span class="count-badge">836</span></a></li>
-              <li><a href="#">Houses for sale in Bahria Town<span class="count-badge">674</span></a></li>
-              <li><a href="#">Houses for sale in G-13<span class="count-badge">576</span></a></li>
-              <li><a href="#">Houses for sale in Bani Gala<span class="count-badge">553</span></a></li>
-              <li><a href="#">Houses for sale in D-12<span class="count-badge">394</span></a></li>
-              <li><a href="#">Houses for sale in Top City 1<span class="count-badge">355</span></a></li>
-              <li><a href="#">Houses for sale in F-8<span class="count-badge">304</span></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Popular Cities to Buy Properties -->
-      <div class="popular-cities-overview">
-        <h3>Popular Cities to Buy Properties</h3>
-        
-        <!-- Houses -->
-        <div class="property-category">
-          <h4>Houses</h4>
-          <div class="cities-grid-compact">
-            <div class="city-item">
-              <a href="#">Houses for sale in Lahore<span class="count">24,969</span></a>
-            </div>
-            <div class="city-item">
-              <a href="#">Houses for sale in Karachi<span class="count">12,925</span></a>
-            </div>
-            <div class="city-item">
-              <a href="#">Houses for sale in Islamabad<span class="count">10,164</span></a>
-            </div>
-            <div class="city-item">
-              <a href="#">Houses for sale in Rawalpindi<span class="count">4,232</span></a>
-            </div>
-            <div class="city-item">
-              <a href="#">Houses for sale in Multan<span class="count">1,797</span></a>
-            </div>
-            <div class="city-item">
-              <a href="#">Houses for sale in Gujranwala<span class="count">1,528</span></a>
-            </div>
-            <div class="city-item">
-              <a href="#">Houses for sale in Faisalabad<span class="count">1,197</span></a>
-            </div>
-            <div class="city-item">
-              <a href="#">Houses for sale in Peshawar<span class="count">753</span></a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Flats and Apartments -->
-        <div class="property-category">
-          <h4>Flats and Apartments</h4>
-          <div class="cities-grid-compact">
-            <div class="city-item">
-              <a href="#">Flats for sale in Karachi<span class="count">12,768</span></a>
-            </div>
-            <div class="city-item">
-              <a href="#">Flats for sale in Islamabad<span class="count">4,377</span></a>
-            </div>
-            <div class="city-item">
-              <a href="#">Flats for sale in Lahore<span class="count">3,133</span></a>
-            </div>
-            <div class="city-item">
-              <a href="#">Flats for sale in Rawalpindi<span class="count">519</span></a>
-            </div>
-            <div class="city-item">
-              <a href="#">Flats for sale in Peshawar<span class="count">182</span></a>
-            </div>
-            <div class="city-item">
-              <a href="#">Flats for sale in Hyderabad<span class="count">109</span></a>
-            </div>
-            <div class="city-item">
-              <a href="#">Flats for sale in Faisalabad<span class="count">21</span></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="view-all-section">
-          <a href="#" class="view-all-link">View all Cities</a>
-        </div>
+        <button class="country-button" onclick="openUaeModal()">
+          <i class="fas fa-headset"></i> Contact UAE Office
+        </button>
       </div>
     </div>
   </section>
 
-  <!-- Footer Section -->
+  <!-- SIMPLE UAE CONTACT MODAL -->
+  <div id="uaeModal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeUaeModal()">
+        <i class="fas fa-times"></i>
+      </button>
+      
+      <div class="modal-header">
+        <h2>UAE Contact Information</h2>
+        <p>Get in touch with our UAE office for premium real estate services</p>
+      </div>
+      
+      <div class="modal-body">
+        <div class="phone-number-container">
+          <div class="phone-icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          
+          <div class="phone-number">+971 4 223 4567</div>
+          <div class="phone-label">UAE Office Hotline</div>
+        </div>
+        
+        <div class="message">
+          Our dedicated UAE team is available to assist you with all your property needs in the Emirates. 
+          Feel free to call us anytime for expert consultation and personalized service.
+        </div>
+        
+        <a href="tel:+97142234567" class="call-button">
+          <i class="fas fa-phone-alt"></i> Call Now
+        </a>
+        
+        <button class="close-button" onclick="closeUaeModal()">
+          <i class="fas fa-times"></i> Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-container">
       
-      <!-- Column 1: Logo & Social -->
       <div class="footer-col">
         <img src="img/maharaja_wht.avif" alt="Maharaja Builders Logo" class="footer-logo" />
         <p>Your trusted partner in finding the perfect property. Excellence in real estate since 1999.</p>
@@ -1304,19 +1204,17 @@
         </div>
       </div>
 
-      <!-- Column 2: Quick Links -->
       <div class="footer-col">
         <h3>Quick Links</h3>
         <ul>
-          <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
-          <li><a href="#"><i class="fas fa-chevron-right"></i> Properties</a></li>
-          <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
-          <li><a href="#"><i class="fas fa-chevron-right"></i> Contact</a></li>
+          <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="properties.html"><i class="fas fa-chevron-right"></i> Properties</a></li>
+          <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+          <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
           <li><a href="#"><i class="fas fa-chevron-right"></i> Services</a></li>
         </ul>
       </div>
 
-      <!-- Column 3: Resources -->
       <div class="footer-col">
         <h3>Resources</h3>
         <ul>
@@ -1328,7 +1226,6 @@
         </ul>
       </div>
 
-      <!-- Column 4: Contact Us -->
       <div class="footer-col">
         <h3>Contact Us</h3>
         <p><i class="fas fa-map-marker-alt"></i> Plot 123, Street 5, F-7 Markaz<br>Islamabad, Pakistan 44000</p>
@@ -1340,122 +1237,109 @@
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; 2026 Maharaja Builders & Realtors. All rights reserved.></i></p>
+      <p>&copy; 2026 Maharaja Builders & Realtors. All rights reserved.</p>
     </div>
   </footer>
 
   <script>
-    // Info Notification Functionality - ALWAYS SHOWS ON PAGE LOAD
-    const infoNotification = document.getElementById('infoNotification');
-    const closeNotificationBtn = document.getElementById('closeNotification');
+    // SIMPLE NOTIFICATION SCRIPT - WILL DEFINITELY SHOW
+    const notificationBar = document.getElementById('notificationBar');
+    const closeBtn = document.getElementById('closeNotification');
     
-    // Close notification when X is clicked (only hides for current session)
-    closeNotificationBtn.addEventListener('click', () => {
-      infoNotification.classList.add('hidden');
+    // Check if user previously closed it
+    if (localStorage.getItem('notificationClosed') === 'true') {
+      notificationBar.style.display = 'none';
+    }
+    
+    // Close button functionality
+    closeBtn.addEventListener('click', function() {
+      notificationBar.style.display = 'none';
+      localStorage.setItem('notificationClosed', 'true');
     });
     
-    // REMOVED the localStorage check - notification will always show on page load
-    
-    // REMOVED the auto-hide timeout - notification stays until manually closed
-    
-    // Show notification immediately on page load
-    // (It's already visible in the HTML, but this ensures it's not hidden)
-    infoNotification.classList.remove('hidden');
-    
-    // Original property search functionality
-    const countrySelect = document.getElementById("country");
-    const citySelect = document.getElementById("city");
-    const propertyGrid = document.getElementById("property-grid");
-    const searchBtn = document.getElementById("search");
+    // The notification is visible by default unless user closed it before
+    console.log("Notification bar should be visible now!");
 
-    const cityOptions = {
-      pakistan: ["Islamabad", "Lahore", "Karachi"],
-      uae: ["Dubai", "Ras Al Khaimah"]
-    };
 
-    const propertyData = {
-      pakistan: {
-        islamabad: [
-          { title: "Luxury Apartment", location: "Islamabad", price: "PKR 25,000,000", img: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg" },
-          { title: "Modern Villa", location: "Islamabad", price: "PKR 45,000,000", img: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg" }
-        ],
-        lahore: [
-          { title: "Elegant House", location: "Lahore", price: "PKR 30,000,000", img: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg" },
-          { title: "Stylish Apartment", location: "Lahore", price: "PKR 20,000,000", img: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg" }
-        ],
-        karachi: [
-          { title: "Seaview Apartment", location: "Karachi", price: "PKR 40,000,000", img: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg" },
-          { title: "Downtown Flat", location: "Karachi", price: "PKR 22,000,000", img: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg" }
-        ]
-      },
-      uae: {
-        dubai: [
-          { title: "Luxury Penthouse", location: "Dubai", price: "AED 2,500,000", img: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg" },
-          { title: "Downtown Apartment", location: "Dubai", price: "AED 1,800,000", img: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg" }
-        ],
-        "ras al khaimah": [
-          { title: "Beach Villa", location: "Ras Al Khaimah", price: "AED 1,200,000", img: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg" },
-          { title: "Seaside Apartment", location: "Ras Al Khaimah", price: "AED 900,000", img: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg" }
-        ]
-      }
-    };
+     // UAE Modal Functions
+    function openUaeModal() {
+      const modal = document.getElementById('uaeModal');
+      modal.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+      
+      // Play opening animation
+      setTimeout(() => {
+        modal.style.animation = 'fadeIn 0.3s ease';
+      }, 10);
+    }
 
-    countrySelect.addEventListener("change", () => {
-      const country = countrySelect.value;
-      citySelect.innerHTML = '<option value="">Select City</option>';
-      if (cityOptions[country]) {
-        cityOptions[country].forEach(city => {
-          const opt = document.createElement("option");
-          opt.value = city.toLowerCase();
-          opt.textContent = city;
-          citySelect.appendChild(opt);
-        });
+    function closeUaeModal() {
+      const modal = document.getElementById('uaeModal');
+      modal.style.animation = 'fadeOut 0.3s ease';
+      
+      setTimeout(() => {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }, 300);
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('uaeModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeUaeModal();
       }
     });
 
-    searchBtn.addEventListener("click", () => {
-      const country = countrySelect.value || "pakistan";
-      const city = citySelect.value;
-      propertyGrid.innerHTML = "";
-
-      let properties = [];
-
-      if (city && propertyData[country]?.[city]) {
-        properties = propertyData[country][city];
-      } else if (country === "pakistan") {
-        properties = [
-          ...propertyData.pakistan.islamabad,
-          ...propertyData.pakistan.lahore,
-          ...propertyData.pakistan.karachi
-        ];
-      } else if (country === "uae") {
-        properties = [
-          ...propertyData.uae.dubai,
-          ...propertyData.uae["ras al khaimah"]
-        ];
-      }
-
-      if (properties.length > 0) {
-        properties.forEach(p => {
-          const card = document.createElement("div");
-          card.classList.add("card");
-          card.innerHTML = `
-            <img src="${p.img}" alt="${p.title}">
-            <div class="card-content">
-              <h3>${p.title}</h3>
-              <p class="location"><i class="fas fa-map-marker-alt"></i> ${p.location}</p>
-              <p class="price">${p.price}</p>
-            </div>
-          `;
-          propertyGrid.appendChild(card);
-        });
-      } else {
-        propertyGrid.innerHTML = "<p style='text-align:center; color:#777; grid-column:1/-1; padding:40px;'>No properties found. Try different search criteria.</p>";
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeUaeModal();
       }
     });
 
-    // Default to Pakistan properties
-    searchBtn.click();
+    // Add click effects to country cards
+    document.querySelectorAll('.country-card').forEach(card => {
+      card.addEventListener('click', function(e) {
+        // Only navigate if the click wasn't on a button (buttons have their own handlers)
+        if (!e.target.closest('button') && !e.target.closest('a')) {
+          if (this.classList.contains('pakistan-card')) {
+            window.location.href = 'buy.html';
+          } else if (this.classList.contains('uae-card')) {
+            openUaeModal();
+          }
+        }
+      });
+    });
+
+    // Add keyframe animation for fadeOut
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = `
+      @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+      }
+    `;
+    document.head.appendChild(styleSheet);
+
+    // Add keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === '1' || e.key === 'p') {
+        window.location.href = 'buy.html';
+      } else if (e.key === '2' || e.key === 'u') {
+        openUaeModal();
+      }
+    });
+
+    // Add hover sound effect simulation
+    document.querySelectorAll('.country-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transition = 'all 0.3s ease';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      });
+    });
   </script>
 </body>
 </html>

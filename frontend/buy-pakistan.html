@@ -1360,162 +1360,22 @@
 
   <script>
     // Property data for different developers and cities
-    const propertyData = {
-      dha: [
-        {
-          id: 1,
-          title: "Luxury Villa in DHA Phase 2",
-          location: "DHA Phase 2, Islamabad",
-          price: "PKR 75,000,000",
-          type: "villa",
-          bedrooms: 5,
-          bathrooms: 5,
-          area: "4,500 sq.ft",
-          image: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg",
-          city: "islamabad",
-          featured: true,
-          developer: "dha"
-        },
-        {
-          id: 2,
-          title: "Modern Apartment in DHA Phase 6",
-          location: "DHA Phase 6, Lahore",
-          price: "PKR 42,000,000",
-          type: "apartment",
-          bedrooms: 3,
-          bathrooms: 3,
-          area: "2,800 sq.ft",
-          image: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg",
-          city: "lahore",
-          featured: true,
-          developer: "dha"
-        },
-        {
-          id: 3,
-          title: "Plot in DHA Phase 8",
-          location: "DHA Phase 8, Karachi",
-          price: "PKR 25,000,000",
-          type: "plot",
-          area: "600 sq.yd",
-          image: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg",
-          city: "karachi",
-          developer: "dha"
-        },
-        {
-          id: 4,
-          title: "Commercial Space in DHA",
-          location: "DHA Commercial, Lahore",
-          price: "PKR 150,000,000",
-          type: "commercial",
-          area: "6,000 sq.ft",
-          image: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg",
-          city: "lahore",
-          developer: "dha"
-        }
-      ],
-      bahria: [
-        {
-          id: 5,
-          title: "Modern Villa in Bahria Town",
-          location: "Bahria Town, Islamabad",
-          price: "PKR 65,000,000",
-          type: "villa",
-          bedrooms: 6,
-          bathrooms: 6,
-          area: "5,200 sq.ft",
-          image: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg",
-          city: "islamabad",
-          featured: true,
-          developer: "bahria"
-        },
-        {
-          id: 6,
-          title: "Apartment in Bahria Orchard",
-          location: "Bahria Orchard, Lahore",
-          price: "PKR 35,000,000",
-          type: "apartment",
-          bedrooms: 3,
-          bathrooms: 3,
-          area: "2,400 sq.ft",
-          image: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg",
-          city: "lahore",
-          developer: "bahria"
-        },
-        {
-          id: 7,
-          title: "Plot in Bahria Town Karachi",
-          location: "Bahria Town, Karachi",
-          price: "PKR 18,000,000",
-          type: "plot",
-          area: "500 sq.yd",
-          image: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg",
-          city: "karachi",
-          developer: "bahria"
-        },
-        {
-          id: 8,
-          title: "Commercial Plaza in Bahria",
-          location: "Bahria Commercial, Rawalpindi",
-          price: "PKR 120,000,000",
-          type: "commercial",
-          area: "5,500 sq.ft",
-          image: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg",
-          city: "rawalpindi",
-          developer: "bahria"
-        }
-      ],
-      other: [
-        {
-          id: 9,
-          title: "Family House in Gulberg",
-          location: "Gulberg, Lahore",
-          price: "PKR 85,000,000",
-          type: "house",
-          bedrooms: 5,
-          bathrooms: 5,
-          area: "4,800 sq.ft",
-          image: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg",
-          city: "lahore",
-          featured: true,
-          developer: "other"
-        },
-        {
-          id: 10,
-          title: "Apartment in Clifton",
-          location: "Clifton, Karachi",
-          price: "PKR 55,000,000",
-          type: "apartment",
-          bedrooms: 4,
-          bathrooms: 4,
-          area: "3,200 sq.ft",
-          image: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg",
-          city: "karachi",
-          developer: "other"
-        },
-        {
-          id: 11,
-          title: "Plot in F-8",
-          location: "F-8, Islamabad",
-          price: "PKR 45,000,000",
-          type: "plot",
-          area: "800 sq.yd",
-          image: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg",
-          city: "islamabad",
-          developer: "other"
-        },
-        {
-          id: 12,
-          title: "Office in Blue Area",
-          location: "Blue Area, Islamabad",
-          price: "PKR 180,000,000",
-          type: "commercial",
-          area: "7,500 sq.ft",
-          image: "https://i.pinimg.com/736x/c4/ee/a4/c4eea4906647b7c01cc0e9f98862f9ce.jpg",
-          city: "islamabad",
-          developer: "other"
-        }
-      ]
-    };
+   async function loadProperties() {
+  try {
+    const res = await fetch('http://localhost:5000/api/properties');
+    const data = await res.json();
+
+    // Filter only sale properties for Buy page
+    const saleProperties = data.filter(p => p.type === 'sale');
+
+    renderProperties(saleProperties);
+  } catch (err) {
+    console.error('Error loading properties:', err);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadProperties);
+
 
     // DOM Elements
     const developerCards = document.querySelectorAll('.developer-card-select');
@@ -1806,14 +1666,15 @@
               ${property.price} <span>/ ${property.type.charAt(0).toUpperCase() + property.type.slice(1)}</span>
             </div>
             
-            <div class="property-actions">
-              <a href="#" class="btn-view">
-                <i class="fas fa-eye"></i> View Details
-              </a>
-              <button class="btn-save">
-                <i class="far fa-heart"></i>
-              </button>
-            </div>
+         <!-- In the renderProperties function inside the script tag, update this section: -->
+<div class="property-actions">
+  <a href="property-details.html?id=${property.id}&developer=${property.developer}" class="btn-view">
+    <i class="fas fa-eye"></i> View Details
+  </a>
+  <button class="btn-save">
+    <i class="far fa-heart"></i>
+  </button>
+</div>
           </div>
         </div>
       `).join('');
@@ -1835,13 +1696,14 @@
       });
 
       // Add event listeners to view buttons
-      document.querySelectorAll('.btn-view').forEach((btn, index) => {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          alert(`Viewing details for: ${properties[index].title}`);
-          // In a real application, you would navigate to property details page
-        });
-      });
+     document.querySelectorAll('.btn-view').forEach((btn, index) => {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    const property = properties[index];
+    window.location.href = `property-details.html?id=${property.id}&developer=${property.developer}`;
+  });
+});
+
     }
   </script>
 </body>

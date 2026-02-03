@@ -2,30 +2,203 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Property Details | Maharaja Builders</title>
-  <link rel="stylesheet" href="property-details.css">
+  <title>Property Details - Maharaja Builders</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-green: #0d2e1e;
+      --secondary-green: #13452a;
+      --accent-gold: #d4af37;
+      --white: #ffffff;
+      --light-gray: #f5f5f5;
+      --text-dark: #0d2e1e;
+      --text-light: #666;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--light-gray);
+      color: var(--text-dark);
+      margin: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      background: var(--white);
+      margin: 60px auto;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(13,46,30,0.1);
+    }
+
+    .main-image {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      border-bottom: 4px solid var(--accent-gold);
+    }
+
+    .content {
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--primary-green);
+      margin-bottom: 15px;
+    }
+
+    .location {
+      color: var(--text-light);
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--secondary-green);
+      margin: 25px 0;
+    }
+
+    .features, .amenities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin: 30px 0;
+    }
+
+    .feature, .amenity {
+      background: rgba(13,46,30,0.05);
+      border: 2px solid rgba(13,46,30,0.08);
+      border-radius: 12px;
+      padding: 15px 20px;
+      flex: 1 1 200px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-dark);
+      transition: 0.3s;
+    }
+
+    .feature i, .amenity i {
+      color: var(--accent-gold);
+      font-size: 1.2rem;
+    }
+
+    .images-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .images-grid img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      transition: transform 0.3s;
+    }
+
+    .images-grid img:hover {
+      transform: scale(1.05);
+    }
+
+    .actions {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .btn {
+      padding: 15px 25px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(13,46,30,0.25);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid var(--primary-green);
+      color: var(--primary-green);
+    }
+
+    .btn-secondary:hover {
+      background: var(--primary-green);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <img id="mainImage" class="main-image" src="" alt="Main Property Image">
+    <div class="content">
+      <h1 id="title">Loading...</h1>
+      <p id="location" class="location"></p>
+      <p id="price" class="price"></p>
 
-  <div class="property-details">
-    <div class="images" id="image-gallery"></div>
+      <div id="features" class="features"></div>
 
-    <div class="info">
-      <h2 id="title"></h2>
-      <p id="location"></p>
-      <p id="price"></p>
-      <p id="details"></p>
-      <p id="amenities"></p>
-    </div>
+      <h3 style="color: var(--primary-green); margin-top: 40px;">Amenities</h3>
+      <div id="amenities" class="amenities"></div>
 
-    <div class="contact">
-      <h3>Contact Owner</h3>
-      <p id="owner-name"></p>
-      <p id="owner-phone"></p>
-      <p id="owner-email"></p>
+      <div id="imagesGrid" class="images-grid"></div>
+
+      <div class="actions">
+        <button class="btn btn-secondary" onclick="history.back()">← Go Back</button>
+        <a href="add-property.html" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Add Property</a>
+      </div>
     </div>
   </div>
 
-  <script src="property-details.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id'));
+    const developer = params.get('developer');
+
+    const propertyData = JSON.parse(localStorage.getItem('propertyData')) || {};
+
+    const property = propertyData[developer]?.find(p => p.id === id);
+    if (!property) {
+      document.querySelector('.content').innerHTML = '<h2>Property not found</h2>';
+    } else {
+      document.getElementById('mainImage').src = property.image;
+      document.getElementById('title').textContent = property.title;
+      document.getElementById('location').textContent = property.location;
+      document.getElementById('price').textContent = property.price;
+      
+      document.getElementById('features').innerHTML = `
+        ${property.bedrooms ? `<div class="feature"><i class="fas fa-bed"></i> ${property.bedrooms} Bedrooms</div>` : ''}
+        ${property.bathrooms ? `<div class="feature"><i class="fas fa-bath"></i> ${property.bathrooms} Bathrooms</div>` : ''}
+        <div class="feature"><i class="fas fa-expand-arrows-alt"></i> ${property.area}</div>
+        <div class="feature"><i class="fas fa-home"></i> ${property.type}</div>
+      `;
+
+      document.getElementById('amenities').innerHTML = property.amenities?.length
+        ? property.amenities.map(a => `<div class="amenity"><i class="fas fa-check-circle"></i> ${a}</div>`).join('')
+        : '<p style="color: var(--text-light);">No amenities listed.</p>';
+
+      document.getElementById('imagesGrid').innerHTML = property.images?.length
+        ? property.images.map(img => `<img src="${img}" alt="Extra Image">`).join('')
+        : '';
+    }
+  </script>
 </body>
 </html>
