@@ -359,7 +359,7 @@
 
     .cards-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 50px;
       justify-content: center;
     }
@@ -403,7 +403,7 @@
     .country-flag {
       width: 120px;
       height: 120px;
-      background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+      background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
       color: var(--pure-white);
       border-radius: 50%;
       display: flex;
@@ -931,67 +931,151 @@
       font-size: 0.85rem;
     }
 
-    /* ========== RESPONSIVE ========== */
-    @media (max-width: 768px) {
-      .hero-notification {
-        padding: 18px 15px;
-        flex-direction: column;
-        gap: 12px;
+    /* ========== RESPONSIVE DESIGN ========== */
+    /* Large Tablets and Small Laptops */
+    @media (max-width: 1100px) {
+      .cards-container {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+        margin: 0 auto;
       }
       
-      .notification-content {
-        flex-direction: column;
-        gap: 10px;
-      }
-      
-      .notification-text {
-        font-size: 1.1rem;
-      }
-      
-      .locations {
-        margin-left: 0;
-        margin-top: 5px;
-      }
-      
-      .highlight {
-        padding: 6px 15px;
-        font-size: 0.9rem;
+      .country-card {
+        padding: 50px 40px;
       }
       
       .navbar {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px;
+        padding: 15px 30px;
       }
       
-      .nav-center {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 15px;
+      .nav-left {
+        left: 30px;
       }
       
-      .nav-left, .user-nav {
-        position: relative;
-        left: 0;
-        right: 0;
-      }
-      
-      .hero h1 {
-        font-size: 2rem;
+      .user-nav {
+        right: 30px;
       }
     }
 
-    @media (max-width: 480px) {
+    /* Tablets */
+    @media (max-width: 768px) {
       .hero-notification {
-        padding: 15px 10px;
+        padding: 18px 15px;
+      }
+      
+      .hero-notification i {
+        font-size: 1.4rem;
       }
       
       .notification-text {
         font-size: 1rem;
       }
       
-      .hero-notification i {
+      .highlight {
+        padding: 6px 15px;
+        font-size: 0.9rem;
+        margin: 5px;
+      }
+      
+      .locations {
+        display: none;
+      }
+      
+      .navbar {
+        padding: 12px 20px;
+        justify-content: space-between;
+        gap: 0;
+      }
+      
+      .nav-center,
+      .user-nav {
+        display: none;
+      }
+      
+      .nav-left {
+        position: static;
+      }
+      
+      .mobile-menu-toggle {
+        display: block;
         font-size: 1.5rem;
+        color: var(--primary-green);
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .logo-hero {
+        height: 100px;
+      }
+      
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+      
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .cta-button {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+      }
+      
+      .country-cards-section {
+        margin: 40px auto 80px;
+      }
+      
+      .country-card {
+        padding: 40px 25px;
+      }
+      
+      .country-flag {
+        width: 90px;
+        height: 90px;
+        font-size: 3rem;
+      }
+      
+      .country-card h2 {
+        font-size: 2rem;
+      }
+      
+      .country-description {
+        font-size: 1rem;
+      }
+      
+      .stat-number {
+        font-size: 1.8rem;
+      }
+      
+      .footer-container {
+        flex-direction: column;
+      }
+      
+      .footer-col {
+        min-width: 100%;
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .logo-hero {
+        height: 85px;
+      }
+      
+      .notification-text {
+        font-size: 0.9rem;
       }
       
       .highlight {
@@ -999,25 +1083,115 @@
         font-size: 0.8rem;
       }
       
-      .hero h1 {
-        font-size: 1.6rem;
+      .country-card {
+        padding: 30px 20px;
       }
       
-      .logo-hero {
+      .country-flag {
+        width: 80px;
         height: 80px;
+        font-size: 2.5rem;
       }
       
-      .cta-button {
-        width: 100%;
-        justify-content: center;
+      .country-card h2 {
+        font-size: 1.8rem;
+      }
+      
+      .country-stats {
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .modal-actions {
+        flex-direction: column;
+      }
+      
+      .call-button,
+      .close-button {
+        max-width: 100%;
+      }
+    }
+
+    /* Mobile Menu Styles */
+    .mobile-menu-toggle {
+      display: none;
+    }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--pure-white);
+      z-index: 1000;
+      padding: 80px 20px 20px;
+      overflow-y: auto;
+    }
+
+    .mobile-nav.active {
+      display: block;
+    }
+
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .mobile-nav-links a {
+      padding: 15px 20px;
+      text-decoration: none;
+      color: var(--primary-green);
+      font-weight: 500;
+      border-bottom: 1px solid rgba(13, 46, 30, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .mobile-user-nav {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 20px;
+    }
+
+    .mobile-user-nav a {
+      padding: 12px;
+      text-decoration: none;
+      text-align: center;
+      border-radius: 8px;
+      font-weight: 500;
+    }
+
+    .mobile-user-nav .login-btn {
+      color: var(--primary-green);
+      border: 2px solid var(--primary-green);
+    }
+
+    .mobile-user-nav .signup-btn {
+      background: var(--primary-green);
+      color: var(--pure-white);
+    }
+
+    .mobile-user-nav .seller-btn {
+      background: var(--accent-gold);
+      color: var(--primary-green);
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu-toggle {
+        display: block;
       }
     }
   </style>
 </head>
 <body>
 
- 
-
+  
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="nav-left">
@@ -1029,6 +1203,7 @@
     <nav class="nav-center">
       <a href="index.html"><i class="fas fa-home"></i> Home</a>
       <a href="buy.html"><i class="fas fa-search"></i> Buy</a>
+      <a href="signup.html"><i class="fas fa-search"></i> Sell</a>
       <a href="rent.html"><i class="fas fa-key"></i> Rent</a>
       <a href="properties.html"><i class="fas fa-building"></i> Other Properties</a>
       <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
@@ -1043,6 +1218,7 @@
       </a>
     </div>
   </header>
+
   <!-- PROMINENT HERO NOTIFICATION - ALWAYS VISIBLE -->
   <div class="hero-notification">
     
@@ -1056,6 +1232,8 @@
     </div>
     
   </div>
+
+
   <!-- HERO SECTION -->
   
   <header class="hero">
@@ -1330,6 +1508,25 @@
         openUaeModal();
       }
     });
+
+    // Mobile menu functionality
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileNav = document.querySelector('.mobile-nav');
+    
+    if (menuToggle) {
+      menuToggle.addEventListener('click', () => {
+        mobileNav.classList.toggle('active');
+        document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : 'auto';
+      });
+      
+      // Close menu when clicking on links
+      document.querySelectorAll('.mobile-nav-links a, .mobile-user-nav a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileNav.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        });
+      });
+    }
 
     // Add hover sound effect simulation
     document.querySelectorAll('.country-card').forEach(card => {

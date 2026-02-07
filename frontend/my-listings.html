@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Listings - Maharaja Builders</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css" />
+  <script src="https://kit.fontawesome.com/a2d9d6f6a7.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="img/maharaja.png" alt="Logo" />
+      </div>
+      <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="my-listings.html" class="active">My Listings</a>
+        <a href="add-property.html">Add Property</a>
+        <a href="#">Settings</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="dashboard-header">
+        <h1>My Listings</h1>
+        <button class="add-new-btn"><i class="fas fa-plus"></i> Add New</button>
+      </header>
+
+      <!-- Listings Grid -->
+      <section class="listing-grid">
+        <!-- Property Card 1 -->
+        <div class="property-card">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Property Image">
+          <h3>Luxury Villa in F-7</h3>
+          <p class="location"><i class="fas fa-map-marker-alt"></i> F-7 Markaz, Islamabad</p>
+          <p class="price">PKR 125,000,000</p>
+          <div class="details">
+            <span>6 Beds</span>
+            <span>5 Baths</span>
+            <span>5,500 sqft</span>
+          </div>
+          <div class="card-actions">
+            <button class="edit-btn"><i class="fas fa-edit"></i> Edit</button>
+            <button class="delete-btn"><i class="fas fa-trash"></i> Delete</button>
+          </div>
+        </div>
+
+        <!-- Property Card 2 -->
+        <div class="property-card">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Property Image">
+          <h3>Modern Penthouse</h3>
+          <p class="location"><i class="fas fa-map-marker-alt"></i> DHA Phase 2, Islamabad</p>
+          <p class="price">PKR 95,000,000</p>
+          <div class="details">
+            <span>4 Beds</span>
+            <span>3 Baths</span>
+            <span>3,800 sqft</span>
+          </div>
+          <div class="card-actions">
+            <button class="edit-btn"><i class="fas fa-edit"></i> Edit</button>
+            <button class="delete-btn"><i class="fas fa-trash"></i> Delete</button>
+          </div>
+        </div>
+
+        <!-- Property Card 3 -->
+        <div class="property-card">
+          <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=800&q=80" alt="Property Image">
+          <h3>Contemporary Estate</h3>
+          <p class="location"><i class="fas fa-map-marker-alt"></i> Bahria Town, Islamabad</p>
+          <p class="price">PKR 85,000,000</p>
+          <div class="details">
+            <span>5 Beds</span>
+            <span>4 Baths</span>
+            <span>4,200 sqft</span>
+          </div>
+          <div class="card-actions">
+            <button class="edit-btn"><i class="fas fa-edit"></i> Edit</button>
+            <button class="delete-btn"><i class="fas fa-trash"></i> Delete</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="my-listings.js"></script>
+</body>
+</html>
